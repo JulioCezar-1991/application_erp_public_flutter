@@ -120,7 +120,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                       AutoCompleteTextField<CustomerListModel>(
                     key: keyCustomer,
                     clearOnSubmit: false,
-                    suggestions: _customerController.customers.value,
+                    suggestions: _customerController.customers.result,
                     style: const TextStyle(color: Colors.black, fontSize: 16.0),
                     decoration: InputDecoration(
                       hintText: "Pesquisa por nome",
@@ -145,7 +145,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                       _orderController.idCustomer = item.sId;
                       setState(
                         () {
-                          searchTextNameCustomer.textField.controller?.text =
+                          searchTextNameCustomer.textField?.controller?.text =
                               item.name;
                         },
                       );
@@ -172,7 +172,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                       AutoCompleteTextField<ClientListModel>(
                     key: keyClient,
                     clearOnSubmit: false,
-                    suggestions: _clientController.clients.value,
+                    suggestions: _clientController.clients.result,
                     style: const TextStyle(color: Colors.black, fontSize: 16.0),
                     decoration: InputDecoration(
                       hintText: "Pesquisa por nome",
@@ -197,7 +197,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                       _orderController.idClient = item.sId;
                       setState(
                         () {
-                          searchTextNameClient.textField.controller?.text =
+                          searchTextNameClient.textField?.controller?.text =
                               item.name;
                         },
                       );
@@ -364,7 +364,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                       AutoCompleteTextField<ProductListModel>(
                     key: keyProduct,
                     clearOnSubmit: false,
-                    suggestions: _productController.products.value,
+                    suggestions: _productController.products.result,
                     style: const TextStyle(color: Colors.black, fontSize: 16.0),
                     decoration: InputDecoration(
                       hintText: "Pesquisa por nome",
@@ -398,7 +398,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
 
                       setState(
                         () {
-                          searchTextNameProduct.textField.controller?.text =
+                          searchTextNameProduct.textField?.controller?.text =
                               item.title;
                         },
                       );

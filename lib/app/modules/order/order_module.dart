@@ -5,7 +5,6 @@ class OrderModule extends Module {
   @override
   List<Bind> get binds => [];
 
-  @override
   List<ModularRoute> get routers => [
         ChildRoute('/', child: (_, args) => OrderPage()),
       ];

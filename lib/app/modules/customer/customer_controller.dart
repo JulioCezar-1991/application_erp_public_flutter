@@ -1,5 +1,3 @@
-// ignore_for_file: import_of_legacy_library_into_null_safe
-
 import 'package:application_erp_public_flutter/app/shared/models/customer_create_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/customer_list_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/customer_model.dart';
@@ -123,10 +121,10 @@ abstract class CustomerControllerBase with Store {
   }
 }
 
-class FormCustomerErrorState = _FormcustomerErrorState
+class FormCustomerErrorState = FormcustomerErrorState
     with _$FormCustomerErrorState;
 
-abstract class _FormcustomerErrorState with Store {
+abstract class FormcustomerErrorState with Store {
   @observable
   late String name;
 

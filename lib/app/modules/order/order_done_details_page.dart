@@ -19,7 +19,7 @@ class OrderDoneDetailsPage extends StatefulWidget {
   const OrderDoneDetailsPage({Key? key, required this.item}) : super(key: key);
 
   @override
-  _OrderDoneDetailsPageState createState() => _OrderDoneDetailsPageState();
+  State<OrderDoneDetailsPage> createState() => _OrderDoneDetailsPageState();
 }
 
 class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
@@ -78,7 +78,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
                     title:
                         const Text("Confirmar Atualização da Orde de Serviço"),
                     actions: <Widget>[
-                      FlatButton(
+                      ElevatedButton(
                         child: Text(
                           "Confirmar",
                           style:
@@ -94,7 +94,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
                           } catch (e) {}
                         },
                       ),
-                      FlatButton(
+                      ElevatedButton(
                         child: Text(
                           "Cancelar",
                           style:
@@ -122,7 +122,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
                   return AlertDialog(
                     title: const Text("Confirmar Exclusão do Serviço"),
                     actions: <Widget>[
-                      FlatButton(
+                      ElevatedButton(
                         child: Text(
                           "Confirmar",
                           style:
@@ -138,7 +138,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
                           } catch (e) {}
                         },
                       ),
-                      FlatButton(
+                      ElevatedButton(
                         child: Text(
                           "Cancelar",
                           style:
@@ -176,7 +176,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
                   AutoCompleteTextField<CustomerListModel>(
                 key: keyCustomer,
                 clearOnSubmit: false,
-                suggestions: _customerController.customers.value,
+                suggestions: _customerController.customers.result,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   hintText: widget.item.customer.name,
@@ -198,7 +198,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
                   _orderController.idCustomer = item.sId;
                   setState(
                     () {
-                      searchTextNameCustomer.textField.controller?.text =
+                      searchTextNameCustomer.textField?.controller?.text =
                           item.name;
                     },
                   );
@@ -223,7 +223,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
                   AutoCompleteTextField<ClientListModel>(
                 key: keyClient,
                 clearOnSubmit: false,
-                suggestions: _clientController.clients.value,
+                suggestions: _clientController.clients.result,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   hintText: widget.item.client.name,
@@ -245,7 +245,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
                   _orderController.idClient = item.sId;
                   setState(
                     () {
-                      searchTextNameClient.textField.controller?.text =
+                      searchTextNameClient.textField?.controller?.text =
                           item.name;
                     },
                   );

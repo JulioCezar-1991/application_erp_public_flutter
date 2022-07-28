@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
         onPageChanged: (index) {
           _controlePagina = index;
         },
-        children: <Widget>[
+        children: const <Widget>[
           Center(
             child: ClientPage(),
           ),

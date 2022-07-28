@@ -21,7 +21,7 @@ class OrderOpenDetailsPage extends StatefulWidget {
   const OrderOpenDetailsPage({Key? key, required this.item}) : super(key: key);
 
   @override
-  _OrderOpenDetailsPageState createState() => _OrderOpenDetailsPageState();
+  State<OrderOpenDetailsPage> createState() => _OrderOpenDetailsPageState();
 }
 
 class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
@@ -178,7 +178,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                   AutoCompleteTextField<CustomerListModel>(
                 key: keyCustomer,
                 clearOnSubmit: false,
-                suggestions: _customerController.customers.value,
+                suggestions: _customerController.customers.result,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   hintText: widget.item.customer.name,
@@ -200,7 +200,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                   _orderController.idCustomer = item.sId;
                   setState(
                     () {
-                      searchTextNameCustomer.textField.controller?.text =
+                      searchTextNameCustomer.textField?.controller?.text =
                           item.name;
                     },
                   );
@@ -225,7 +225,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                   AutoCompleteTextField<ClientListModel>(
                 key: keyClient,
                 clearOnSubmit: false,
-                suggestions: _clientController.clients.value,
+                suggestions: _clientController.clients.result,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   hintText: widget.item.client.name,
@@ -247,7 +247,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                   _orderController.idClient = item.sId;
                   setState(
                     () {
-                      searchTextNameClient.textField.controller?.text =
+                      searchTextNameClient.textField?.controller?.text =
                           item.name;
                     },
                   );

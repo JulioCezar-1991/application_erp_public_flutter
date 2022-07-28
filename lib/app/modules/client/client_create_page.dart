@@ -12,13 +12,13 @@ class ClientCreatePage extends StatefulWidget {
   const ClientCreatePage({Key? key}) : super(key: key);
 
   @override
-  _ClientCreatePageState createState() => _ClientCreatePageState();
+  State<ClientCreatePage> createState() => _ClientCreatePageState();
 }
 
 class _ClientCreatePageState extends State<ClientCreatePage> {
   @override
   Widget build(BuildContext context) {
-    final _clientController = Modular.get<ClientController>();
+    final clientController = Modular.get<ClientController>();
 
     final formKey = GlobalKey<FormState>();
 
@@ -52,19 +52,19 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                     return AlertDialog(
                       title: const Text("Confirmar Cadastro do Cliente"),
                       actions: <Widget>[
-                        FlatButton(
+                        ElevatedButton(
                           child: const Text(
                             "Salvar",
                           ),
                           onPressed: () {
-                            _clientController.validateCreateAll();
-                            _clientController.fetchClient();
+                            clientController.validateCreateAll();
+                            clientController.fetchClient();
                             Modular.to.popAndPushNamed(
                               '/home',
                             );
                           },
                         ),
-                        FlatButton(
+                        ElevatedButton(
                           child: const Text(
                             "Cancelar",
                           ),
@@ -95,9 +95,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 hintText: 'Digite o nome',
                 labelText: 'Nome Completo',
                 onChanged: (value) {
-                  _clientController.name = value;
+                  clientController.name = value;
                 },
-                errorText: _clientController.error.name,
+                errorText: clientController.error.name,
               ),
             ),
             Observer(
@@ -111,9 +111,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 hintText: 'Digite seu CPF',
                 labelText: 'CPF',
                 onChanged: (value) {
-                  _clientController.cpf = value;
+                  clientController.cpf = value;
                 },
-                errorText: _clientController.error.cpf,
+                errorText: clientController.error.cpf,
               ),
             ),
             const SizedBox(
@@ -134,7 +134,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                     initialDate: currentValue ?? DateTime.now(),
                     lastDate: DateTime(2100));
                 if (date != null) {
-                  _clientController.date = date.toString();
+                  clientController.date = date.toString();
                 }
                 return date;
               },
@@ -149,9 +149,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 hintText: 'Digite o E-mail',
                 labelText: 'E-mail',
                 onChanged: (value) {
-                  _clientController.email = value;
+                  clientController.email = value;
                 },
-                errorText: _clientController.error.email,
+                errorText: clientController.error.email,
               ),
             ),
             Observer(
@@ -165,9 +165,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 hintText: 'Digite o número móvel',
                 labelText: 'Telefone Celular',
                 onChanged: (value) {
-                  _clientController.telcel = value;
+                  clientController.telcel = value;
                 },
-                errorText: _clientController.error.telcel,
+                errorText: clientController.error.telcel,
               ),
             ),
             Observer(
@@ -181,9 +181,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 hintText: 'Digite o telefone fixo',
                 labelText: 'Telefone Fixo',
                 onChanged: (value) {
-                  _clientController.telfix = value;
+                  clientController.telfix = value;
                 },
-                errorText: _clientController.error.telfix,
+                errorText: clientController.error.telfix,
               ),
             ),
             Observer(
@@ -195,9 +195,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   hintText: 'Digite o endereço',
                   labelText: 'Endereço',
                   onChanged: (value) {
-                    _clientController.address = value;
+                    clientController.address = value;
                   },
-                  errorText: _clientController.error.address,
+                  errorText: clientController.error.address,
                 );
               },
             ),
@@ -210,9 +210,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   hintText: 'Digite o bairro',
                   labelText: 'Bairro',
                   onChanged: (value) {
-                    _clientController.sector = value;
+                    clientController.sector = value;
                   },
-                  errorText: _clientController.error.sector,
+                  errorText: clientController.error.sector,
                 );
               },
             ),
@@ -227,9 +227,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   hintText: 'Digite a cidade',
                   labelText: 'Cidade',
                   onChanged: (value) {
-                    _clientController.city = value;
+                    clientController.city = value;
                   },
-                  errorText: _clientController.error.city,
+                  errorText: clientController.error.city,
                 );
               },
             ),
@@ -237,15 +237,15 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
               builder: (_) {
                 return TextFieldCreate(
                   icon: const Icon(
-                    FontAwesomeIcons.mapMarkedAlt,
+                    FontAwesomeIcons.mapLocationDot,
                   ),
                   hintText: 'Digite o estado',
                   labelText: 'Estado',
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
-                    _clientController.state = value;
+                    clientController.state = value;
                   },
-                  errorText: _clientController.error.state,
+                  errorText: clientController.error.state,
                 );
               },
             ),

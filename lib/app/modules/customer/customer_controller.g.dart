@@ -232,17 +232,17 @@ dataClientModel: ${dataClientModel}
   }
 }
 
-mixin _$FormCustomerErrorState on _FormcustomerErrorState, Store {
+mixin _$FormCustomerErrorState on FormcustomerErrorState, Store {
   Computed<bool>? _$hasErrorsComputed;
 
   @override
   bool get hasErrors =>
       (_$hasErrorsComputed ??= Computed<bool>(() => super.hasErrors,
-              name: '_FormcustomerErrorState.hasErrors'))
+              name: 'FormcustomerErrorState.hasErrors'))
           .value;
 
   late final _$nameAtom =
-      Atom(name: '_FormcustomerErrorState.name', context: context);
+      Atom(name: 'FormcustomerErrorState.name', context: context);
 
   @override
   String get name {
@@ -258,7 +258,7 @@ mixin _$FormCustomerErrorState on _FormcustomerErrorState, Store {
   }
 
   late final _$telcelAtom =
-      Atom(name: '_FormcustomerErrorState.telcel', context: context);
+      Atom(name: 'FormcustomerErrorState.telcel', context: context);
 
   @override
   String get telcel {
@@ -274,7 +274,7 @@ mixin _$FormCustomerErrorState on _FormcustomerErrorState, Store {
   }
 
   late final _$telfixAtom =
-      Atom(name: '_FormcustomerErrorState.telfix', context: context);
+      Atom(name: 'FormcustomerErrorState.telfix', context: context);
 
   @override
   String get telfix {
@@ -290,7 +290,7 @@ mixin _$FormCustomerErrorState on _FormcustomerErrorState, Store {
   }
 
   late final _$emailAtom =
-      Atom(name: '_FormcustomerErrorState.email', context: context);
+      Atom(name: 'FormcustomerErrorState.email', context: context);
 
   @override
   String get email {
@@ -306,7 +306,7 @@ mixin _$FormCustomerErrorState on _FormcustomerErrorState, Store {
   }
 
   late final _$passwordAtom =
-      Atom(name: '_FormcustomerErrorState.password', context: context);
+      Atom(name: 'FormcustomerErrorState.password', context: context);
 
   @override
   String get password {
@@ -322,7 +322,7 @@ mixin _$FormCustomerErrorState on _FormcustomerErrorState, Store {
   }
 
   late final _$rolesAtom =
-      Atom(name: '_FormcustomerErrorState.roles', context: context);
+      Atom(name: 'FormcustomerErrorState.roles', context: context);
 
   @override
   String get roles {

@@ -12,7 +12,6 @@ ThemeData appTheme() {
   return ThemeData(
     brightness: brightness,
     primaryColor: primaryColor,
-    accentColor: accentColor,
     backgroundColor: backgroundColor,
     bottomAppBarColor: bottomAppBarColor,
     cursorColor: accentColor,

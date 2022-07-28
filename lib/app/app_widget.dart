@@ -1,4 +1,5 @@
 import 'package:application_erp_public_flutter/app/shared/utils/theme_util.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -13,13 +14,12 @@ class AppWidget extends StatelessWidget {
       theme: appTheme(),
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
-      /* localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ], */
-      supportedLocales: const [
-        Locale("pt"),
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
+      supportedLocales: const [Locale('en', 'US')],
     );
   }
 }

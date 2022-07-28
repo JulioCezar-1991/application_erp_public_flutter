@@ -58,7 +58,7 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
     _orderController.status = widget.item.status;
     _orderController.schedulingDate = widget.item.schedulingdate;
 
-    MediaQueryData _queryData = MediaQuery.of(context);
+    MediaQueryData queryData = MediaQuery.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -80,7 +80,7 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                     title:
                         const Text("Confirmar Atualização da Orde de Serviço"),
                     actions: <Widget>[
-                      FlatButton(
+                      ElevatedButton(
                         child: Text(
                           "Confirmar",
                           style:
@@ -96,7 +96,7 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                           } catch (e) {}
                         },
                       ),
-                      FlatButton(
+                      ElevatedButton(
                         child: Text(
                           "Cancelar",
                           style:
@@ -178,7 +178,7 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                   AutoCompleteTextField<CustomerListModel>(
                 key: keyCustomer,
                 clearOnSubmit: false,
-                suggestions: _customerController.customers.value,
+                suggestions: _customerController.customers.result,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   hintText: widget.item.customer.name,
@@ -200,7 +200,7 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                   _orderController.idCustomer = item.sId;
                   setState(
                     () {
-                      searchTextNameCustomer.textField.controller?.text =
+                      searchTextNameCustomer.textField?.controller?.text =
                           item.name;
                     },
                   );
@@ -225,7 +225,7 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                   AutoCompleteTextField<ClientListModel>(
                 key: keyClient,
                 clearOnSubmit: false,
-                suggestions: _clientController.clients.value,
+                suggestions: _clientController.clients.result,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   hintText: widget.item.client.name,
@@ -247,7 +247,7 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                   _orderController.idClient = item.sId;
                   setState(
                     () {
-                      searchTextNameClient.textField.controller?.text =
+                      searchTextNameClient.textField?.controller!.text =
                           item.name;
                     },
                   );
@@ -444,7 +444,7 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                                 fontSize: 14, fontWeight: FontWeight.w800),
                           ),
                           SizedBox(
-                            width: _queryData.size.width / 2.1,
+                            width: queryData.size.width / 2.1,
                           ),
                           const Text(
                             "  Valor",
@@ -458,14 +458,14 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                       Row(
                         children: <Widget>[
                           SizedBox(
-                            width: _queryData.size.width / 1.6,
+                            width: queryData.size.width / 1.6,
                             child: Text(item.product.title),
                           ),
                           const SizedBox(
                             height: 30,
                           ),
                           SizedBox(
-                            width: _queryData.size.width / 5.5,
+                            width: queryData.size.width / 5.5,
                             child: Text(
                               "    ${item.product.price.toString()}",
                             ),
@@ -476,14 +476,14 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                     Row(
                       children: <Widget>[
                         SizedBox(
-                          width: _queryData.size.width / 1.6,
+                          width: queryData.size.width / 1.6,
                           child: const Text('Total:'),
                         ),
                         const SizedBox(
                           height: 30,
                         ),
                         SizedBox(
-                          width: _queryData.size.width / 5.5,
+                          width: queryData.size.width / 5.5,
                           child: Text(
                             "    ${subTotal()}",
                           ),

@@ -7,6 +7,6 @@ class ClientModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (_, __) => ClientPage()),
+        ChildRoute('/', child: (_, __) => const ClientPage()),
       ];
 }

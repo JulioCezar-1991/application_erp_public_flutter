@@ -14,7 +14,7 @@ class CustomerModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/customer', child: (_, args) => CustomerPage()),
+        ChildRoute('/customer', child: (_, args) => const CustomerPage()),
         ModuleRoute('/home', module: HomeModule())
       ];
 }

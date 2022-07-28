@@ -29,6 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -36,25 +38,25 @@ dependencies:
   cupertino_icons: ^1.0.2
   
 
-  font_awesome_flutter: ^8.4.0
+  font_awesome_flutter: ^10.1.0
 
   dio: ^4.0.6
  
-  intl: ^0.16.0
-  cpf_cnpj_validator: ^1.0.5
+  intl: ^0.17.0
+  cpf_cnpj_validator: ^2.0.0
   email_validator: '^1.0.0'
-  validators: ^2.0.0
+  validators: ^3.0.0
   
-  shared_preferences: ^0.5.3
+  shared_preferences: ^2.0.15
 
   flutter_modular: ^5.0.3
   flutter_mobx: ^2.0.6+1
   mobx: ^2.0.7+5
   
   
-  datetime_picker_formfield: ^1.0.0
-  autocomplete_textfield: ^1.6.4
-  mask_text_input_formatter: ^1.0.6
+  datetime_picker_formfield: ^2.0.0
+  autocomplete_textfield: ^2.0.1
+  mask_text_input_formatter: ^2.3.0
   flutter_masked_text: ^0.8.0
 
 dev_dependencies:

@@ -6,6 +6,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class ClientPage extends StatelessWidget {
+  const ClientPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final clientController = Modular.get<ClientController>();

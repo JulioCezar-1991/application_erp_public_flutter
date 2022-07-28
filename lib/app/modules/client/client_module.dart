@@ -6,7 +6,7 @@ class ClientModule extends Module {
   List<Bind> get binds => [];
 
   @override
-  List<ModuleRoute> get routes => [
-        ChildRoute('/', child: (_, args) => ClientPage()),
+  List<ModularRoute> get routes => [
+        ChildRoute('/', child: (_, __) => ClientPage()),
       ];
 }

@@ -1,18 +1,18 @@
 class ClientListModel {
-  bool active;
-  String sId;
-  String name;
-  String cpf;
-  String date;
-  String telcel;
-  String telfix;
-  String email;
-  String address;
-  String sector;
-  String city;
-  String state;
-  String createDate;
-  int iV;
+  dynamic active;
+  dynamic sId;
+  dynamic name;
+  dynamic cpf;
+  dynamic date;
+  dynamic telcel;
+  dynamic telfix;
+  dynamic email;
+  dynamic address;
+  dynamic sector;
+  dynamic city;
+  dynamic state;
+  dynamic createDate;
+  dynamic iV;
 
   ClientListModel(
       {this.active,
@@ -48,21 +48,21 @@ class ClientListModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['active'] = this.active;
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['cpf'] = this.cpf;
-    data['date'] = this.date;
-    data['telcel'] = this.telcel;
-    data['telfix'] = this.telfix;
-    data['email'] = this.email;
-    data['address'] = this.address;
-    data['sector'] = this.sector;
-    data['city'] = this.city;
-    data['state'] = this.state;
-    data['createDate'] = this.createDate;
-    data['__v'] = this.iV;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['active'] = active;
+    data['_id'] = sId;
+    data['name'] = name;
+    data['cpf'] = cpf;
+    data['date'] = date;
+    data['telcel'] = telcel;
+    data['telfix'] = telfix;
+    data['email'] = email;
+    data['address'] = address;
+    data['sector'] = sector;
+    data['city'] = city;
+    data['state'] = state;
+    data['createDate'] = createDate;
+    data['__v'] = iV;
     return data;
   }
 }

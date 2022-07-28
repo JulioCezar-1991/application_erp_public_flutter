@@ -1,13 +1,13 @@
 class ProductModel {
-  bool active;
-  String sId;
-  String title;
-  String description;
-  String type;
-  double price;
-  String averagetime;
-  String createDate;
-  int iV;
+  dynamic active;
+  dynamic sId;
+  dynamic title;
+  dynamic description;
+  dynamic type;
+  dynamic price;
+  dynamic averagetime;
+  dynamic createDate;
+  dynamic iV;
 
   ProductModel(
     this.active,
@@ -34,16 +34,16 @@ class ProductModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['active'] = this.active;
-    data['_id'] = this.sId;
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['type'] = this.type;
-    data['price'] = this.price;
-    data['averagetime'] = this.averagetime;
-    data['createDate'] = this.createDate;
-    data['__v'] = this.iV;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['active'] = active;
+    data['_id'] = sId;
+    data['title'] = title;
+    data['description'] = description;
+    data['type'] = type;
+    data['price'] = price;
+    data['averagetime'] = averagetime;
+    data['createDate'] = createDate;
+    data['__v'] = iV;
     return data;
   }
 }

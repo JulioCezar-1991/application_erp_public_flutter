@@ -1,4 +1,9 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
+import 'package:application_erp_public_flutter/app/shared/models/client_create_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/client_delete_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/client_model.dart';
 import 'package:application_erp_public_flutter/app/shared/repositories/client_repository.dart';
 import 'package:mobx/mobx.dart';
 
@@ -7,21 +12,21 @@ import 'package:cpf_cnpj_validator/cpf_validator.dart';
 
 part 'client_controller.g.dart';
 
-class ClientController = _ClientControllerBase with _$ClientController;
+class ClientController = ClientControllerBase with _$ClientController;
 
-abstract class _ClientControllerBase with Store {
+abstract class ClientControllerBase with Store {
   final FormClientErrorState error = FormClientErrorState();
-  final ClientRepository repository;
+  late final ClientRepository repository;
 
   @observable
-  ObservableFuture<List<ClientListModel>> clients;
+  late ObservableFuture<List<ClientListModel>> clients;
 
   @action
   fetchClient() {
     clients = repository.getAllClient().asObservable();
   }
 
-  _ClientControllerBase(this.repository) {
+  ClientControllerBase(repository) {
     fetchClient();
   }
 
@@ -30,7 +35,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateName(String value) {
-    error.name = isNull(value) || value.isEmpty ? 'Nome inválido' : null;
+    error.name = (isNull(value) || value.isEmpty ? 'Nome inválido' : null)!;
   }
 
   @observable
@@ -38,7 +43,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateCPF(String value) {
-    error.cpf = CPFValidator.isValid(value) ? null : 'CPF inválido';
+    error.cpf = (CPFValidator.isValid(value) ? null : 'CPF inválido')!;
   }
 
   // Metodos Data Nascimento
@@ -49,7 +54,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateEmail(String value) {
-    error.email = isEmail(value) ? null : 'Email inválido';
+    error.email = (isEmail(value) ? null : 'Email inválido')!;
   }
 
   @observable
@@ -57,7 +62,8 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateTelCel(String value) {
-    error.telcel = isNull(value) || value.isEmpty ? 'Telefone inválido' : null;
+    error.telcel =
+        (isNull(value) || value.isEmpty ? 'Telefone inválido' : null)!;
   }
 
   @observable
@@ -65,7 +71,8 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateTelFix(String value) {
-    error.telfix = isNull(value) || value.isEmpty ? 'Telefone inválido' : null;
+    error.telfix =
+        (isNull(value) || value.isEmpty ? 'Telefone inválido' : null)!;
   }
 
   @observable
@@ -73,7 +80,8 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateAddress(String value) {
-    error.address = isNull(value) || value.isEmpty ? 'Endereco inválido' : null;
+    error.address =
+        (isNull(value) || value.isEmpty ? 'Endereco inválido' : null)!;
   }
 
   @observable
@@ -81,7 +89,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateSector(String value) {
-    error.sector = isNull(value) || value.isEmpty ? 'Setor inválido' : null;
+    error.sector = (isNull(value) || value.isEmpty ? 'Setor inválido' : null)!;
   }
 
   @observable
@@ -89,7 +97,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateCity(String value) {
-    error.city = isNull(value) || value.isEmpty ? 'Cidade inválida' : null;
+    error.city = (isNull(value) || value.isEmpty ? 'Cidade inválida' : null)!;
   }
 
   @observable
@@ -97,7 +105,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateState(String value) {
-    error.state = isNull(value) || value.isEmpty ? 'Estado inválido' : null;
+    error.state = (isNull(value) || value.isEmpty ? 'Estado inválido' : null)!;
   }
 
   @observable
@@ -119,10 +127,11 @@ abstract class _ClientControllerBase with Store {
       var res = await repository.postClient(model);
       return res;
     } catch (ex) {
+      // ignore: avoid_print
       print(ex);
-      dataClientModel = null;
+      dataClientModel = model;
     }
-    return null;
+    return model.id;
   }
 
   void validateCreateAll() async {
@@ -158,9 +167,9 @@ abstract class _ClientControllerBase with Store {
       var res = await repository.deleteClient(model);
       return res;
     } catch (error) {
-      dataClientModel = null;
+      dataClientModel = model.id;
     }
-    return null;
+    return model.id;
   }
 
   void patchClient(String id) async {
@@ -170,55 +179,55 @@ abstract class _ClientControllerBase with Store {
   Future<ClientModel> _patchClient(ClientCreateModel model, id) async {
     var model = ClientCreateModel(
         id: id,
-        name: this.name,
-        cpf: this.cpf,
-        date: this.date,
-        telcel: this.telcel,
-        telfix: this.telfix,
-        email: this.email,
-        address: this.address,
-        sector: this.sector,
-        city: this.city,
-        state: this.state);
+        name: name,
+        cpf: cpf,
+        date: date,
+        telcel: telcel,
+        telfix: telfix,
+        email: email,
+        address: address,
+        sector: sector,
+        city: city,
+        state: state);
     try {
       var res = await repository.patchClient(model);
       return res;
     } catch (error) {
-      dataClientModel = null;
+      dataClientModel = model;
     }
-    return null;
+    return model.id;
   }
 }
 
-class FormClientErrorState = _FormClientErrorState with _$FormClientErrorState;
+class FormClientErrorState = FormClientError with _$FormClientErrorState;
 
-abstract class _FormClientErrorState with Store {
+abstract class FormClientError with Store {
   @observable
-  String name;
-
-  @observable
-  String cpf;
+  late String name;
 
   @observable
-  String telcel;
+  late String cpf;
 
   @observable
-  String telfix;
+  late String telcel;
 
   @observable
-  String email;
+  late String telfix;
 
   @observable
-  String address;
+  late String email;
 
   @observable
-  String sector;
+  late String address;
 
   @observable
-  String city;
+  late String sector;
 
   @observable
-  String state;
+  late String city;
+
+  @observable
+  late String state;
 
   @computed
   bool get hasErrors =>

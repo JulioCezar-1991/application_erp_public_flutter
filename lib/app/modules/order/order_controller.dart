@@ -1,21 +1,24 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
+import 'package:application_erp_public_flutter/app/shared/models/order_canceled_list_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/order_create_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/order_delete_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/order_done_list_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/order_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/order_open_list_model.dart';
+import 'package:application_erp_public_flutter/app/shared/repositories/order_repository.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:mobx/mobx.dart';
-import 'package:projeto_fanap/app/shared/models/order_canceled_list_model.dart';
-import 'package:projeto_fanap/app/shared/models/order_create_model.dart';
-import 'package:projeto_fanap/app/shared/models/order_delete_model.dart';
-import 'package:projeto_fanap/app/shared/models/order_done_list_model.dart';
-import 'package:projeto_fanap/app/shared/models/order_model.dart';
-import 'package:projeto_fanap/app/shared/models/order_open_list_model.dart';
-import 'package:projeto_fanap/app/shared/repositories/order_repository.dart';
+
 import 'package:validators/validators.dart';
 
 part 'order_controller.g.dart';
 
-class OrderController = _OrderControllerBase with _$OrderController;
+class OrderController = OrderControllerBase with _$OrderController;
 
-abstract class _OrderControllerBase with Store {
+abstract class OrderControllerBase with Store {
   final FormOrderErrorState error = FormOrderErrorState();
-  final OrderRepository repository;
+  late final OrderRepository repository;
 
   List<String> listStatus = [
     'Status do Serviço',
@@ -33,7 +36,7 @@ abstract class _OrderControllerBase with Store {
   ];
 
   @observable
-  ObservableFuture<List<OrderOpenListModel>> ordersOpen;
+  late ObservableFuture<List<OrderOpenListModel>> ordersOpen;
 
   @action
   fetchOrderOpen() {
@@ -41,7 +44,7 @@ abstract class _OrderControllerBase with Store {
   }
 
   @observable
-  ObservableFuture<List<OrderDoneListModel>> ordersDone;
+  late ObservableFuture<List<OrderDoneListModel>> ordersDone;
 
   @action
   fetchOrderDone() {
@@ -49,24 +52,24 @@ abstract class _OrderControllerBase with Store {
   }
 
   @observable
-  ObservableFuture<List<OrderCanceledListModel>> ordersCanceled;
+  late ObservableFuture<List<OrderCanceledListModel>> ordersCanceled;
 
   @action
   fetchOrderCanceled() {
     ordersCanceled = repository.getOrderCanceled().asObservable();
   }
 
-  _OrderControllerBase(this.repository) {
+  OrderControllerBase(repository) {
     fetchOrderOpen();
     fetchOrderDone();
     fetchOrderCanceled();
   }
 
   @observable
-  AutoCompleteTextField searchTextNameCustomer;
+  late AutoCompleteTextField searchTextNameCustomer;
 
   @observable
-  AutoCompleteTextField searchTextNameClient;
+  late AutoCompleteTextField searchTextNameClient;
 
   @observable
   var dataOrderModel = OrderCreateModel();
@@ -76,7 +79,7 @@ abstract class _OrderControllerBase with Store {
   @action
   void validateIdCustomer(String value) {
     error.idCustomer =
-        isNull(value) || value.isEmpty ? 'IdUser inválido' : null;
+        (isNull(value) || value.isEmpty ? 'IdUser inválido' : null)!;
   }
 
   String idClient = '';
@@ -84,7 +87,7 @@ abstract class _OrderControllerBase with Store {
   @action
   void validateIdClient(String value) {
     error.idClient =
-        isNull(value) || value.isEmpty ? 'IdClient inválido' : null;
+        (isNull(value) || value.isEmpty ? 'IdClient inválido' : null)!;
   }
 
   @observable
@@ -93,7 +96,7 @@ abstract class _OrderControllerBase with Store {
   @action
   void validateDate(String value) {
     error.schedulingDate =
-        isNull(value) || value.isEmpty ? 'Data Invalida inválido' : null;
+        (isNull(value) || value.isEmpty ? 'Data Invalida inválido' : null)!;
   }
 
   @observable
@@ -101,8 +104,9 @@ abstract class _OrderControllerBase with Store {
 
   @action
   void validatePayment(String value) {
-    error.payment =
-        isNull(value) || value.isEmpty ? 'Forma de Pagamento Inválido' : null;
+    error.payment = (isNull(value) || value.isEmpty
+        ? 'Forma de Pagamento Inválido'
+        : null)!;
   }
 
   @observable
@@ -110,7 +114,7 @@ abstract class _OrderControllerBase with Store {
 
   @action
   void validateStatus(String value) {
-    error.status = isNull(value) || value.isEmpty ? 'Status Inválido' : null;
+    error.status = (isNull(value) || value.isEmpty ? 'Status Inválido' : null)!;
   }
 
   @observable
@@ -148,9 +152,9 @@ abstract class _OrderControllerBase with Store {
       var res = await repository.postOrder(model);
       return res;
     } catch (ex) {
-      dataOrderModel = null;
+      dataOrderModel = model;
     }
-    return null;
+    return model.id;
   }
 
   void patchOrder(String id) async {
@@ -164,16 +168,16 @@ abstract class _OrderControllerBase with Store {
       client: idClient,
       schedulingdate: schedulingDate,
       formPayment: payment,
-      /*  itens: , */
+      /*  itens: itens, */
       status: status,
     );
     try {
       var res = await repository.patchOrder(model);
       return res;
     } catch (error) {
-      dataOrderModel = null;
+      dataOrderModel = model;
     }
-    return null;
+    return model.id;
   }
 
   void deleteOrder(String id) async {
@@ -186,9 +190,9 @@ abstract class _OrderControllerBase with Store {
       var res = await repository.deleteOrder(model);
       return res;
     } catch (error) {
-      dataOrderModel = null;
+      dataOrderModel = model.id;
     }
-    return null;
+    return model.id;
   }
 
   void validateCreateAll() async {
@@ -212,19 +216,19 @@ class FormOrderErrorState = _FormOrderErrorState with _$FormOrderErrorState;
 
 abstract class _FormOrderErrorState with Store {
   @observable
-  String idCustomer;
+  late String idCustomer;
 
   @observable
-  String idClient;
+  late String idClient;
 
   @observable
-  String schedulingDate;
+  late String schedulingDate;
 
   @observable
-  String payment;
+  late String payment;
 
   @observable
-  String status;
+  late String status;
 
   @computed
   bool get hasErrors =>

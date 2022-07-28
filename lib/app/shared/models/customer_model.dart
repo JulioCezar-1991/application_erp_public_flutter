@@ -1,13 +1,13 @@
 class CustomerModel {
-  List<String> roles;
-  bool active;
-  String sId;
-  String name;
-  String telcel;
-  String telfix;
-  String email;
-  String createDate;
-  int iV;
+  dynamic roles;
+  dynamic active;
+  dynamic sId;
+  dynamic name;
+  dynamic telcel;
+  dynamic telfix;
+  dynamic email;
+  dynamic createDate;
+  dynamic iV;
 
   CustomerModel(
     this.roles,
@@ -34,7 +34,7 @@ class CustomerModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['roles'] = roles;
     data['active'] = active;
     data['_id'] = sId;

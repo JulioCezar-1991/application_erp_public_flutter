@@ -1,3 +1,8 @@
+// ignore_for_file: avoid_print
+
+import 'package:application_erp_public_flutter/app/modules/client/client_controller.dart';
+import 'package:application_erp_public_flutter/app/shared/components/text_field_update_widget.dart';
+import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,17 +10,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:projeto_fanap/app/modules/client/client_controller.dart';
-import 'package:projeto_fanap/app/shared/components/text_field_update_widget.dart';
-import 'package:projeto_fanap/app/shared/models/client_list_model.dart';
 
 class ClientDetailsPage extends StatefulWidget {
   final ClientListModel item;
 
-  const ClientDetailsPage({Key key, this.item});
+  const ClientDetailsPage({Key? key, required this.item}) : super(key: key);
 
   @override
-  _ClientDetailsPageState createState() => _ClientDetailsPageState();
+  State<ClientDetailsPage> createState() => _ClientDetailsPageState();
 }
 
 class _ClientDetailsPageState extends State<ClientDetailsPage> {
@@ -38,16 +40,16 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Detalhes do Cliente",
           style: TextStyle(fontSize: 18),
         ),
         actions: <Widget>[
           // Icone de Atualização //
           Padding(
-            padding: EdgeInsets.only(right: 2),
+            padding: const EdgeInsets.only(right: 2),
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.update,
               ),
               onPressed: () {
@@ -55,13 +57,11 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Confirmar Atualização do Cliente"),
+                      title: const Text("Confirmar Atualização do Cliente"),
                       actions: <Widget>[
-                        FlatButton(
-                          child: Text(
+                        ElevatedButton(
+                          child: const Text(
                             "Confirmar",
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
                           ),
                           onPressed: () {
                             try {
@@ -73,11 +73,9 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                             } catch (e) {}
                           },
                         ),
-                        FlatButton(
-                          child: Text(
+                        ElevatedButton(
+                          child: const Text(
                             "Cancelar",
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -92,9 +90,9 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
           ),
           // Icone de Delete //
           Padding(
-            padding: EdgeInsets.only(right: 2),
+            padding: const EdgeInsets.only(right: 2),
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.delete_outline,
               ),
               onPressed: () {
@@ -102,13 +100,11 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Confirmar Exclusão do Cliente"),
+                      title: const Text("Confirmar Exclusão do Cliente"),
                       actions: <Widget>[
-                        FlatButton(
-                          child: Text(
+                        ElevatedButton(
+                          child: const Text(
                             "Confirmar",
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
                           ),
                           onPressed: () {
                             try {
@@ -120,11 +116,9 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                             } catch (e) {}
                           },
                         ),
-                        FlatButton(
-                          child: Text(
+                        ElevatedButton(
+                          child: const Text(
                             "Cancelar",
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -140,16 +134,15 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 20, bottom: 6, right: 20),
+        padding: const EdgeInsets.only(left: 20, bottom: 6, right: 20),
         child: Column(
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Nome Completo",
-                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
@@ -168,9 +161,8 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "CPF",
-                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
@@ -190,43 +182,40 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Data de anivesário",
-                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
             // Data de Aniversario
-            Container(
-              child: DateTimeField(
-                key: formKey,
-                initialValue: DateTime.parse(_clientController.date),
-                decoration: InputDecoration(
-                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
-                  border: OutlineInputBorder(),
-                ),
-                format: format,
-                onShowPicker: (context, currentValue) async {
-                  final date = await showDatePicker(
-                      context: context,
-                      firstDate: DateTime(1900),
-                      initialDate: currentValue ?? DateTime.now(),
-                      lastDate: DateTime(2100));
-                  if (date != null) {
-                    _clientController.date = date.toString();
-                    print(_clientController.date);
-                  }
-                  return date;
-                },
+            DateTimeField(
+              key: formKey,
+              initialValue: DateTime.parse(_clientController.date),
+              decoration: InputDecoration(
+                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                border: const OutlineInputBorder(),
               ),
+              format: format,
+              onShowPicker: (context, currentValue) async {
+                final date = await showDatePicker(
+                    context: context,
+                    firstDate: DateTime(1900),
+                    initialDate: currentValue ?? DateTime.now(),
+                    lastDate: DateTime(2100));
+                if (date != null) {
+                  _clientController.date = date.toString();
+                  print(_clientController.date);
+                }
+                return date;
+              },
             ),
+
             Padding(
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "E-mail",
-                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
@@ -245,9 +234,8 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Telefone Celular",
-                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
@@ -267,9 +255,8 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Telefone fixo",
-                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
@@ -289,9 +276,8 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Endereço",
-                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
@@ -310,9 +296,8 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Bairro",
-                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
@@ -331,9 +316,8 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Cidade",
-                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
@@ -352,9 +336,8 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Estado",
-                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),

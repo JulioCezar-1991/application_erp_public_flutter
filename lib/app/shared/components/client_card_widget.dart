@@ -108,6 +108,7 @@ class ClientCard extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ClientDetailsPage(
               item: item,
+              key: key,
             ),
           ),
         );

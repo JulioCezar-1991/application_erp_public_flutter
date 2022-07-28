@@ -17,11 +17,11 @@ class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  PageController _controllerPage = PageController(initialPage: 0);
+  PageController controllerPage = PageController(initialPage: 0);
   final _customerController = Modular.get<CustomerController>();
   final _clientController = Modular.get<ClientController>();
   final _productController = Modular.get<ProductController>();
@@ -30,22 +30,22 @@ class _HomePageState extends State<HomePage> {
   final _scaffoldkey = GlobalKey<ScaffoldState>();
 
   int _controlePagina = 0;
-  String _title = "Clientes";
+  String title = "Clientes";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldkey,
-      endDrawer: DrawerHomeWidget(),
+      endDrawer: const DrawerHomeWidget(),
       appBar: AppBar(
         backgroundColor: Theme.of(context).backgroundColor,
         automaticallyImplyLeading: false,
         title: Text(
-          "  ${this._title}",
+          "  $title",
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh),
             onPressed: () {
               if (_controlePagina == 0) {
                 _customerController.fetchCustomer();
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: PageView(
-        controller: _controllerPage,
+        controller: controllerPage,
         onPageChanged: (index) {
           _controlePagina = index;
         },
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ClientCreatePage(),
+                    builder: (context) => const ClientCreatePage(),
                   ),
                 );
               } else if (_controlePagina == 1) {
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => OrderCreatePage(),
+                    builder: (context) => const OrderCreatePage(),
                   ),
                 );
               }
@@ -142,8 +142,8 @@ class _HomePageState extends State<HomePage> {
                 icon: const Icon(Icons.people),
                 onPressed: () {
                   setState(() {
-                    _title = "Clientes";
-                    _controllerPage.jumpToPage(0);
+                    title = "Clientes";
+                    controllerPage.jumpToPage(0);
                   });
                 },
               ),
@@ -155,8 +155,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onPressed: () {
                   setState(() {
-                    _title = "Serviços";
-                    _controllerPage.jumpToPage(1);
+                    title = "Serviços";
+                    controllerPage.jumpToPage(1);
                   });
                 },
               ),
@@ -169,8 +169,8 @@ class _HomePageState extends State<HomePage> {
                 icon: const Icon(Icons.perm_contact_calendar),
                 onPressed: () {
                   setState(() {
-                    _title = "Agendamentos";
-                    _controllerPage.jumpToPage(2);
+                    title = "Agendamentos";
+                    controllerPage.jumpToPage(2);
                   });
                 },
               ),
@@ -183,8 +183,8 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   setState(
                     () {
-                      _title = "Analise de Serviços";
-                      _controllerPage.jumpToPage(3);
+                      title = "Analise de Serviços";
+                      controllerPage.jumpToPage(3);
                     },
                   );
                 },

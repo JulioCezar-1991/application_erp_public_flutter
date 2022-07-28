@@ -30,12 +30,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
       appBar: AppBar(
         title: const Text(
           "Detalhes do Produto",
-          style: const TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 18),
         ),
         actions: <Widget>[
           // Icone de Atualização //
           Padding(
-            padding: EdgeInsets.only(right: 2),
+            padding: const EdgeInsets.only(right: 2),
             child: IconButton(
               icon: const Icon(
                 Icons.update,
@@ -45,13 +45,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Confirmar Atualização do Produto"),
+                      title: const Text("Confirmar Atualização do Produto"),
                       actions: <Widget>[
                         FlatButton(
-                          child: Text(
+                          child: const Text(
                             "Confirmar",
-                            style: const TextStyle(
-                                color: Theme.of(context).accentColor),
                           ),
                           onPressed: () {
                             try {
@@ -66,8 +64,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         FlatButton(
                           child: Text(
                             "Cancelar",
-                            style: const TextStyle(
-                                color: Theme.of(context).accentColor),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -82,7 +80,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           ),
           // Icone de Delete //
           Padding(
-            padding: EdgeInsets.only(right: 2),
+            padding: const EdgeInsets.only(right: 2),
             child: IconButton(
               icon: const Icon(
                 Icons.delete_outline,
@@ -92,13 +90,13 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Confirmar Exclusão do Produto"),
+                      title: const Text("Confirmar Exclusão do Produto"),
                       actions: <Widget>[
                         FlatButton(
                           child: Text(
                             "Confirmar",
-                            style: const TextStyle(
-                                color: Theme.of(context).accentColor),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary),
                           ),
                           onPressed: () {
                             try {
@@ -113,8 +111,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         FlatButton(
                           child: Text(
                             "Cancelar",
-                            style: const TextStyle(
-                                color: Theme.of(context).accentColor),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -211,7 +209,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Tipo de Serviço",
                 ),
               ),
@@ -236,8 +234,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                   iconSize: 24,
                   elevation: 16,
-                  style: const TextStyle(
-                    color: Theme.of(context).primaryColor,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   underline: Container(
                     height: 2,
@@ -250,7 +248,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       child: Text(value),
                     );
                   }).toList(),
-                  onChanged: (String newValue) {
+                  onChanged: (dynamic newValue) {
                     _productController.type = newValue;
                   },
                 ),
@@ -260,7 +258,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Observação",
                 ),
               ),

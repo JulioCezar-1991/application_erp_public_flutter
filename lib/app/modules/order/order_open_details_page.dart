@@ -3,6 +3,8 @@
 import 'package:application_erp_public_flutter/app/modules/client/client_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/customer/customer_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/order/order_controller.dart';
+import 'package:application_erp_public_flutter/app/shared/components/row_client_widget.dart';
+import 'package:application_erp_public_flutter/app/shared/components/row_customer_widget.dart';
 import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/customer_list_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/order_open_list_model.dart';
@@ -23,8 +25,8 @@ class OrderOpenDetailsPage extends StatefulWidget {
 }
 
 class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
-  AutoCompleteTextField searchTextNameCustomer;
-  AutoCompleteTextField searchTextNameClient;
+  late AutoCompleteTextField searchTextNameCustomer;
+  late AutoCompleteTextField searchTextNameClient;
 
   GlobalKey<AutoCompleteTextFieldState<CustomerListModel>> keyCustomer =
       GlobalKey();
@@ -56,7 +58,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
     _orderController.status = widget.item.status;
     _orderController.schedulingDate = widget.item.schedulingdate;
 
-    MediaQueryData _queryData = MediaQuery.of(context);
+    MediaQueryData queryData = MediaQuery.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -112,7 +114,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
           ),
           // Icone de Delete //
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.delete_outline,
             ),
             onPressed: () {
@@ -120,7 +122,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: Text("Confirmar Exclusão do Serviço"),
+                    title: const Text("Confirmar Exclusão do Serviço"),
                     actions: <Widget>[
                       FlatButton(
                         child: Text(
@@ -157,7 +159,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
+        padding: const EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -178,9 +180,9 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                 clearOnSubmit: false,
                 suggestions: _customerController.customers.value,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   hintText: widget.item.customer.name,
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
                     color: Colors.black,
@@ -198,7 +200,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                   _orderController.idCustomer = item.sId;
                   setState(
                     () {
-                      searchTextNameCustomer.textField.controller.text =
+                      searchTextNameCustomer.textField.controller?.text =
                           item.name;
                     },
                   );
@@ -225,9 +227,9 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                 clearOnSubmit: false,
                 suggestions: _clientController.clients.value,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   hintText: widget.item.client.name,
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
                     color: Colors.black,
@@ -245,7 +247,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                   _orderController.idClient = item.sId;
                   setState(
                     () {
-                      searchTextNameClient.textField.controller.text =
+                      searchTextNameClient.textField.controller?.text =
                           item.name;
                     },
                   );
@@ -268,7 +270,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
             DateTimeField(
               format: format,
               initialValue: DateTime.parse(_orderController.schedulingDate),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
               ),
               onShowPicker: (context, currentValue) async {
@@ -305,9 +307,9 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
               children: <Widget>[
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     height: 62,
-                    decoration: new BoxDecoration(
+                    decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
                         width: 1,
@@ -341,7 +343,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                             );
                           },
                         ).toList(),
-                        onChanged: (String newValue) {
+                        onChanged: (dynamic newValue) {
                           _orderController.payment = newValue;
                         },
                       ),
@@ -400,7 +402,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                             );
                           },
                         ).toList(),
-                        onChanged: (String newValue) {
+                        onChanged: (dynamic newValue) {
                           _orderController.status = newValue;
                         },
                       ),
@@ -427,7 +429,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: SingleChildScrollView(
-                padding: EdgeInsets.all(3),
+                padding: const EdgeInsets.all(3),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -436,15 +438,15 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                       padding: const EdgeInsets.only(bottom: 5, top: 5),
                       child: Row(
                         children: <Widget>[
-                          Text(
+                          const Text(
                             "Serviços",
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w800),
                           ),
                           SizedBox(
-                            width: _queryData.size.width / 2.1,
+                            width: queryData.size.width / 2.1,
                           ),
-                          Text(
+                          const Text(
                             "  Valor",
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w800),
@@ -455,33 +457,33 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                     for (Itens item in widget.item.itens)
                       Row(
                         children: <Widget>[
-                          Container(
-                            width: _queryData.size.width / 1.6,
+                          SizedBox(
+                            width: queryData.size.width / 1.6,
                             child: Text(item.product.title),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
-                          Container(
-                            width: _queryData.size.width / 5.5,
+                          SizedBox(
+                            width: queryData.size.width / 5.5,
                             child: Text(
                               "    ${item.product.price.toString()}",
                             ),
                           ),
                         ],
                       ),
-                    Divider(),
+                    const Divider(),
                     Row(
                       children: <Widget>[
-                        Container(
-                          width: _queryData.size.width / 1.6,
-                          child: Text('Total:'),
-                        ),
                         SizedBox(
+                          width: queryData.size.width / 1.6,
+                          child: const Text('Total:'),
+                        ),
+                        const SizedBox(
                           height: 30,
                         ),
-                        Container(
-                          width: _queryData.size.width / 5.5,
+                        SizedBox(
+                          width: queryData.size.width / 5.5,
                           child: Text(
                             "    ${subTotal()}",
                           ),

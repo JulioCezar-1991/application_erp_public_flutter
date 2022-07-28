@@ -1,3 +1,5 @@
+import 'package:application_erp_public_flutter/app/modules/client/client_controller.dart';
+import 'package:application_erp_public_flutter/app/shared/components/text_field_create_widget.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -5,10 +7,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:projeto_fanap/app/modules/client/client_controller.dart';
-import 'package:projeto_fanap/app/shared/components/text_field_create_widget.dart';
 
 class ClientCreatePage extends StatefulWidget {
+  const ClientCreatePage({Key? key}) : super(key: key);
+
   @override
   _ClientCreatePageState createState() => _ClientCreatePageState();
 }
@@ -33,14 +35,14 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Cadastrar Novo Cliente",
         ),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.only(right: 4),
+            padding: const EdgeInsets.only(right: 4),
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.check,
               ),
               onPressed: () {
@@ -48,13 +50,11 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Confirmar Cadastro do Cliente"),
+                      title: const Text("Confirmar Cadastro do Cliente"),
                       actions: <Widget>[
                         FlatButton(
-                          child: Text(
+                          child: const Text(
                             "Salvar",
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
                           ),
                           onPressed: () {
                             _clientController.validateCreateAll();
@@ -65,10 +65,8 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                           },
                         ),
                         FlatButton(
-                          child: Text(
+                          child: const Text(
                             "Cancelar",
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -84,14 +82,14 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
+        padding: const EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
         child: Column(
           children: <Widget>[
             Observer(
               builder: (_) => TextFieldCreate(
                 keyboardType: TextInputType.text,
                 maxLength: 38,
-                icon: Icon(
+                icon: const Icon(
                   Icons.perm_identity,
                 ),
                 hintText: 'Digite o nome',
@@ -107,7 +105,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 inputFormatters: [maskCpfFormatter],
                 keyboardType: TextInputType.number,
                 maxLength: 11,
-                icon: Icon(
+                icon: const Icon(
                   Icons.perm_identity,
                 ),
                 hintText: 'Digite seu CPF',
@@ -118,16 +116,15 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 errorText: _clientController.error.cpf,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             DateTimeField(
               key: formKey,
               initialValue: DateTime.now(),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 icon: Icon(Icons.calendar_today),
                 labelText: "Data de anivesário",
-                labelStyle: TextStyle(color: Theme.of(context).accentColor),
               ),
               format: format,
               onShowPicker: (context, currentValue) async {
@@ -146,7 +143,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
               builder: (_) => TextFieldCreate(
                 keyboardType: TextInputType.emailAddress,
                 maxLength: 32,
-                icon: Icon(
+                icon: const Icon(
                   Icons.email,
                 ),
                 hintText: 'Digite o E-mail',
@@ -162,7 +159,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 inputFormatters: [maskTelCelFormatter],
                 keyboardType: TextInputType.phone,
                 maxLength: 12,
-                icon: Icon(
+                icon: const Icon(
                   Icons.smartphone,
                 ),
                 hintText: 'Digite o número móvel',
@@ -178,7 +175,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 inputFormatters: [maskTelFixFormatter],
                 keyboardType: TextInputType.phone,
                 maxLength: 12,
-                icon: Icon(
+                icon: const Icon(
                   Icons.phone,
                 ),
                 hintText: 'Digite o telefone fixo',
@@ -194,7 +191,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 return TextFieldCreate(
                   keyboardType: TextInputType.text,
                   maxLength: 38,
-                  icon: Icon(Icons.home),
+                  icon: const Icon(Icons.home),
                   hintText: 'Digite o endereço',
                   labelText: 'Endereço',
                   onChanged: (value) {
@@ -209,7 +206,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 return TextFieldCreate(
                   keyboardType: TextInputType.text,
                   maxLength: 28,
-                  icon: Icon(FontAwesomeIcons.streetView),
+                  icon: const Icon(FontAwesomeIcons.streetView),
                   hintText: 'Digite o bairro',
                   labelText: 'Bairro',
                   onChanged: (value) {
@@ -224,7 +221,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 return TextFieldCreate(
                   keyboardType: TextInputType.text,
                   maxLength: 28,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.location_city,
                   ),
                   hintText: 'Digite a cidade',
@@ -239,7 +236,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
             Observer(
               builder: (_) {
                 return TextFieldCreate(
-                  icon: Icon(
+                  icon: const Icon(
                     FontAwesomeIcons.mapMarkedAlt,
                   ),
                   hintText: 'Digite o estado',
@@ -252,7 +249,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 );
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             )
           ],

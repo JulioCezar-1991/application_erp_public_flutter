@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class CircleButtonWidget extends StatelessWidget {
   final dynamic label;
   final dynamic backgroundColor;
-  final Color textColor;
-  final Color borderColor;
-  final double height;
-  final double width;
+  final dynamic textColor;
+  final dynamic borderColor;
+  final dynamic height;
+  final dynamic width;
   final dynamic icon;
   final GestureTapCallback onTap;
 
@@ -14,10 +14,10 @@ class CircleButtonWidget extends StatelessWidget {
       {Key? key,
       this.label,
       this.backgroundColor,
-      required this.textColor,
-      required this.borderColor,
-      required this.height,
-      required this.width,
+      this.textColor,
+      this.borderColor,
+      this.height,
+      this.width,
       this.icon,
       required this.onTap})
       : super(key: key);
@@ -28,9 +28,7 @@ class CircleButtonWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: Material(
         borderRadius: BorderRadius.circular(8),
-        color: backgroundColor == null
-            ? Theme.of(context).backgroundColor
-            : backgroundColor,
+        color: backgroundColor ?? Theme.of(context).backgroundColor,
         child: InkWell(
           onTap: onTap,
           child: Container(

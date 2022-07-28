@@ -1,18 +1,19 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: import_of_legacy_library_into_null_safe
 
 import 'package:application_erp_public_flutter/app/modules/customer/customer_controller.dart';
 import 'package:application_erp_public_flutter/app/shared/components/text_field_create_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:intl/intl.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:intl/intl.dart' show DateFormat;
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart'
+    show MaskTextInputFormatter;
 
 class CustomerCreatePage extends StatefulWidget {
   const CustomerCreatePage({Key? key}) : super(key: key);
 
   @override
-  _CustomerCreatePageState createState() => _CustomerCreatePageState();
+  State<CustomerCreatePage> createState() => _CustomerCreatePageState();
 }
 
 class _CustomerCreatePageState extends State<CustomerCreatePage> {
@@ -22,7 +23,7 @@ class _CustomerCreatePageState extends State<CustomerCreatePage> {
       mask: "(##) ####-####", filter: {"#": RegExp(r'[0-9]')});
 
   final format = DateFormat("HH:mm");
-  String dropdownValue;
+  late String dropdownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +46,11 @@ class _CustomerCreatePageState extends State<CustomerCreatePage> {
                     return AlertDialog(
                       title: const Text("Confirmar Cadastro do Produto"),
                       actions: <Widget>[
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Salvar",
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
                           ),
                           onPressed: () {
                             _customerController.validateAll();
@@ -59,11 +60,11 @@ class _CustomerCreatePageState extends State<CustomerCreatePage> {
                             );
                           },
                         ),
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Cancelar",
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -199,7 +200,7 @@ class _CustomerCreatePageState extends State<CustomerCreatePage> {
                             );
                           },
                         ).toList(),
-                        onChanged: (String newValue) {
+                        onChanged: (dynamic newValue) {
                           _customerController.roles = newValue;
                           setState(() {
                             dropdownValue = newValue;

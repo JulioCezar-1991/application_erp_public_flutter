@@ -20,7 +20,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
       mask: "(##) ####-####", filter: {"#": RegExp(r'[0-9]')});
 
   final format = DateFormat("HH:mm");
-  String dropdownValue;
+  late String dropdownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +198,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                             );
                           },
                         ).toList(),
-                        onChanged: (String newValue) {
+                        onChanged: (dynamic newValue) {
                           _productController.type = newValue;
                           setState(() {
                             dropdownValue = newValue;

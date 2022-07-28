@@ -1,10 +1,10 @@
 class ProductCreateModel {
-  String id;
-  String title;
-  String description;
-  String type;
-  double price;
-  String averagetime;
+  dynamic id;
+  dynamic title;
+  dynamic description;
+  dynamic type;
+  dynamic price;
+  dynamic averagetime;
 
   ProductCreateModel({
     this.id,
@@ -16,13 +16,13 @@ class ProductCreateModel {
   });
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['type'] = this.type;
-    data['price'] = this.price;
-    data['averagetime'] = this.averagetime;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['description'] = description;
+    data['type'] = type;
+    data['price'] = price;
+    data['averagetime'] = averagetime;
 
     return data;
   }

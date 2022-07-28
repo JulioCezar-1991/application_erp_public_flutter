@@ -1,25 +1,24 @@
 class CustomerListModel {
-  List<String> roles;
-  bool active;
-  String sId;
-  String name;
-  String telcel;
-  String telfix;
-  String email;
-  String createDate;
-  int iV;
+  dynamic roles;
+  dynamic active;
+  dynamic sId;
+  dynamic name;
+  dynamic telcel;
+  dynamic telfix;
+  dynamic email;
+  dynamic createDate;
+  dynamic iV;
 
   CustomerListModel(
-    this.roles,
-    this.active,
-    this.sId,
-    this.name,
-    this.telcel,
-    this.telfix,
-    this.email,
-    this.createDate,
-    this.iV,
-  );
+      {this.roles,
+      this.active,
+      this.sId,
+      this.name,
+      this.telcel,
+      this.telfix,
+      this.email,
+      this.createDate,
+      this.iV});
 
   CustomerListModel.fromJson(Map<String, dynamic> json) {
     roles = json['roles'].cast<String>();
@@ -34,16 +33,16 @@ class CustomerListModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['roles'] = this.roles;
-    data['active'] = this.active;
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['telcel'] = this.telcel;
-    data['telfix'] = this.telfix;
-    data['email'] = this.email;
-    data['createDate'] = this.createDate;
-    data['__v'] = this.iV;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['roles'] = roles;
+    data['active'] = active;
+    data['_id'] = sId;
+    data['name'] = name;
+    data['telcel'] = telcel;
+    data['telfix'] = telfix;
+    data['email'] = email;
+    data['createDate'] = createDate;
+    data['__v'] = iV;
     return data;
   }
 }

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CustomerCard extends StatelessWidget {
   final CustomerListModel item;
 
-  const CustomerCard({required Key key, required this.item}) : super(key: key);
+  const CustomerCard({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class CustomerCard extends StatelessWidget {
                           item.telcel == null ? 'Sem Celular' : item.telcel,
                           style: TextStyle(
                               fontSize: 12,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).primaryColor),
                         ),
                         const SizedBox(
                           width: 22,

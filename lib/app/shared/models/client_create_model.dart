@@ -1,18 +1,18 @@
 class ClientCreateModel {
-  String id;
-  String name;
-  String cpf;
-  String date;
-  String telcel;
-  String telfix;
-  String email;
-  String address;
-  String sector;
-  String city;
-  String state;
+  dynamic id;
+  dynamic name;
+  dynamic cpf;
+  dynamic date;
+  dynamic telcel;
+  dynamic telfix;
+  dynamic email;
+  dynamic address;
+  dynamic sector;
+  dynamic city;
+  dynamic state;
 
   ClientCreateModel(
-      this.id,
+      {this.id,
       this.name,
       this.cpf,
       this.date,
@@ -22,10 +22,10 @@ class ClientCreateModel {
       this.address,
       this.sector,
       this.city,
-      this.state);
+      this.state});
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
 
     data['id'] = id;
     data['name'] = name;

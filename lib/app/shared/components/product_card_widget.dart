@@ -10,8 +10,8 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _isExpanded = false;
-    const _defaultLines = 2;
+    bool isExpanded = false;
+    const defaultLines = 2;
 
     return GestureDetector(
       child: Card(
@@ -63,17 +63,16 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    child: Text(
-                      /* produto.nome == null ? "" : "Shopp ${produto.desc}", */
-                      item.description = item.description =
-                          item.description.length > 64
-                              ? item.description.substring(0, 58) + '...'
-                              : item.description,
-                      maxLines: _isExpanded ? null : _defaultLines,
-                      style: const TextStyle(
-                        fontSize: 12,
-                      ),
+                  Text(
+                    /* produto.nome == null ? "" : "Shopp ${produto.desc}", */
+                    item.description = item.description =
+                        item.description.length > 64
+                            ? item.description.substring(0, 58) + '...'
+                            : item.description,
+                    // ignore: dead_code
+                    maxLines: isExpanded ? null : defaultLines,
+                    style: const TextStyle(
+                      fontSize: 12,
                     ),
                   ),
                 ],

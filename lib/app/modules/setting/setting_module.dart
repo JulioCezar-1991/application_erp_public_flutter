@@ -9,7 +9,7 @@ class SettingModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/setting', child: (_, args) => SettingPage()),
+        ChildRoute('/setting', child: (_, args) => const SettingPage()),
         ModuleRoute('/home', module: HomeModule())
       ];
 }

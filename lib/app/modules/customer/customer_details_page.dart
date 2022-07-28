@@ -1,20 +1,20 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, import_of_legacy_library_into_null_safe
 
 import 'package:application_erp_public_flutter/app/modules/customer/customer_controller.dart';
 import 'package:application_erp_public_flutter/app/shared/components/text_field_update_widget.dart';
 import 'package:application_erp_public_flutter/app/shared/models/customer_list_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-// ignore: use_key_in_widget_constructors
 class CustomerDetailsPage extends StatefulWidget {
   final CustomerListModel item;
 
+  const CustomerDetailsPage({Key? key, required this.item}) : super(key: key);
+
   @override
-  _CustomerDetailsPageState createState() => _CustomerDetailsPageState();
+  State<CustomerDetailsPage> createState() => _CustomerDetailsPageState();
 }
 
 class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
@@ -32,16 +32,16 @@ class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Detalhes do Cliente",
           style: TextStyle(fontSize: 18),
         ),
         actions: <Widget>[
           // Icone de Atualização //
           Padding(
-            padding: EdgeInsets.only(right: 2),
+            padding: const EdgeInsets.only(right: 2),
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.update,
               ),
               onPressed: () {
@@ -49,7 +49,7 @@ class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Confirmar Atualização do Cliente"),
+                      title: const Text("Confirmar Atualização do Cliente"),
                       actions: <Widget>[
                         FlatButton(
                           child: Text(
@@ -238,9 +238,9 @@ class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
               children: <Widget>[
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     height: 62,
-                    decoration: new BoxDecoration(
+                    decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
                         width: 1,
@@ -274,7 +274,7 @@ class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
                             );
                           },
                         ).toList(),
-                        onChanged: (String newValue) async {
+                        onChanged: (dynamic newValue) async {
                           _customerController.roles = newValue;
                         },
                       ),

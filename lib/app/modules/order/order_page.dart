@@ -10,12 +10,12 @@ class OrderPage extends StatefulWidget {
   const OrderPage({Key? key}) : super(key: key);
 
   @override
-  _OrderPageState createState() => _OrderPageState();
+  State<OrderPage> createState() => _OrderPageState();
 }
 
 class _OrderPageState extends State<OrderPage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  late TabController _tabController;
 
   @override
   void initState() {
@@ -25,9 +25,9 @@ class _OrderPageState extends State<OrderPage>
 
   @override
   Widget build(BuildContext context) {
-    final _orderController = Modular.get<OrderController>();
+    final orderController = Modular.get<OrderController>();
     return Scaffold(
-      appBar: constTabBar(
+      appBar: TabBar(
         indicatorSize: TabBarIndicatorSize.label,
         indicatorWeight: 2,
         labelColor: Theme.of(context).primaryColor,
@@ -35,7 +35,7 @@ class _OrderPageState extends State<OrderPage>
         indicator: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).primaryColor,
               width: 4.0,
             ),
           ),
@@ -62,7 +62,7 @@ class _OrderPageState extends State<OrderPage>
           Center(
             child: Observer(
               builder: (_) {
-                if (_orderController.ordersOpen.error != null) {
+                if (orderController.ordersOpen.error != null) {
                   return Center(
                     child: IconButton(
                       icon: Icon(
@@ -70,17 +70,17 @@ class _OrderPageState extends State<OrderPage>
                         size: 40,
                       ),
                       onPressed: () {
-                        _orderController.fetchOrderOpen();
+                        orderController.fetchOrderOpen();
                       },
                     ),
                   );
                 }
-                if (_orderController.ordersOpen.value == null) {
+                if (orderController.ordersOpen.value == null) {
                   return Center(child: CircularProgressIndicator());
                 }
-                var list = _orderController.ordersOpen.value;
+                var list = orderController.ordersOpen.value;
                 return ListView.builder(
-                  itemCount: list.length,
+                  itemCount: list?.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: OrderOpenCard(
@@ -96,7 +96,7 @@ class _OrderPageState extends State<OrderPage>
           Center(
             child: Observer(
               builder: (_) {
-                if (_orderController.ordersDone.error != null) {
+                if (orderController.ordersDone.error != null) {
                   return Center(
                     child: IconButton(
                       icon: Icon(
@@ -104,21 +104,21 @@ class _OrderPageState extends State<OrderPage>
                         size: 40,
                       ),
                       onPressed: () {
-                        _orderController.fetchOrderDone();
+                        orderController.fetchOrderDone();
                       },
                     ),
                   );
                 }
-                if (_orderController.ordersDone.value == null) {
+                if (orderController.ordersDone.value == null) {
                   return Center(child: CircularProgressIndicator());
                 }
-                var list = _orderController.ordersDone.value;
+                var list = orderController.ordersDone.value;
                 return ListView.builder(
                   itemCount: list?.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: OrderDoneCard(
-                        item: list[index],
+                        item: list![index],
                       ),
                     );
                   },
@@ -130,7 +130,7 @@ class _OrderPageState extends State<OrderPage>
           Center(
             child: Observer(
               builder: (_) {
-                if (_orderController.ordersCanceled.error != null) {
+                if (orderController.ordersCanceled.error != null) {
                   return Center(
                     child: IconButton(
                       icon: Icon(
@@ -138,15 +138,15 @@ class _OrderPageState extends State<OrderPage>
                         size: 40,
                       ),
                       onPressed: () {
-                        _orderController.fetchOrderCanceled();
+                        orderController.fetchOrderCanceled();
                       },
                     ),
                   );
                 }
-                if (_orderController.ordersCanceled.value == null) {
+                if (orderController.ordersCanceled.value == null) {
                   return Center(child: CircularProgressIndicator());
                 }
-                var list = _orderController.ordersCanceled.value;
+                var list = orderController.ordersCanceled.value;
                 return ListView.builder(
                   itemCount: list?.length,
                   itemBuilder: (context, index) {

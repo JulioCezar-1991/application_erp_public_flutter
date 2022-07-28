@@ -1,5 +1,9 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
 import 'package:application_erp_public_flutter/app/shared/models/product_create_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/product_delete_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/product_list_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/product_model.dart';
 import 'package:application_erp_public_flutter/app/shared/repositories/product_repository.dart';
 import 'package:mobx/mobx.dart';
 
@@ -7,21 +11,21 @@ import 'package:validators/validators.dart';
 
 part 'product_controller.g.dart';
 
-class ProductController = _ProductControllerBase with _$ProductController;
+class ProductController = ProductControllerBase with _$ProductController;
 
-abstract class _ProductControllerBase with Store {
+abstract class ProductControllerBase with Store {
   final FormProductErrorState error = FormProductErrorState();
-  final ProductRepository _repository;
+  late final ProductRepository repository;
 
   @observable
-  ObservableFuture<List<ProductListModel>> products;
+  late ObservableFuture<List<ProductListModel>> products;
 
   @action
   fetchProduct() {
-    products = _repository.getAllProduct().asObservable();
+    products = repository.getAllProduct().asObservable();
   }
 
-  _ProductControllerBase(this._repository) {
+  ProductControllerBase(repository) {
     fetchProduct();
   }
 
@@ -64,7 +68,7 @@ abstract class _ProductControllerBase with Store {
   @action
   void validateAveragetime(String value) {
     error.averagetime =
-        isNull(value) || value.isEmpty ? 'Tempo de serviço inválido' : null;
+        (isNull(value) || value.isEmpty ? 'Tempo de serviço inválido' : null)!;
   }
 
   @observable
@@ -73,7 +77,7 @@ abstract class _ProductControllerBase with Store {
   @action
   void validateDescription(String value) {
     error.description =
-        isNull(value) || value.isEmpty ? 'Descrição invalida' : null;
+        (isNull(value) || value.isEmpty ? 'Descrição invalida' : null)!;
   }
 
   @observable
@@ -87,13 +91,13 @@ abstract class _ProductControllerBase with Store {
         type: type,
         price: double.parse(price));
     try {
-      var res = await _repository.postProduct(model);
+      var res = await repository.postProduct(model);
       return res;
     } catch (ex) {
       print(ex);
-      dataProductModel = null;
+      dataProductModel = model;
     }
-    return null;
+    return model.id;
   }
 
   void validateAll() async {
@@ -115,12 +119,12 @@ abstract class _ProductControllerBase with Store {
   Future<ProductModel> _deleteProduct(String id) async {
     var model = ProductDeleteModel(id: id);
     try {
-      var res = await _repository.deleteProduct(model);
+      var res = await repository.deleteProduct(model);
       return res;
     } catch (error) {
-      dataProductModel = null;
+      dataProductModel = model.id;
     }
-    return null;
+    return model.id;
   }
 
   void patchProduct(String id) async {
@@ -137,33 +141,32 @@ abstract class _ProductControllerBase with Store {
       description: description,
     );
     try {
-      var res = await _repository.patchProduct(model);
+      var res = await repository.patchProduct(model);
       return res;
     } catch (error) {
-      dataProductModel = null;
+      dataProductModel = model;
     }
-    return null;
+    return model.id;
   }
 }
 
-class FormProductErrorState = _FormProductErrorState
-    with _$FormProductErrorState;
+class FormProductErrorState = FormProductError with _$FormProductErrorState;
 
-abstract class _FormProductErrorState with Store {
+abstract class FormProductError with Store {
   @observable
-  String title;
-
-  @observable
-  String price;
+  late String title;
 
   @observable
-  String averagetime;
+  late String price;
 
   @observable
-  String type;
+  late String averagetime;
 
   @observable
-  String description;
+  late String type;
+
+  @observable
+  late String description;
 
   @computed
   bool get hasErrors =>

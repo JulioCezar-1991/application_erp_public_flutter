@@ -4,27 +4,30 @@ import 'package:application_erp_public_flutter/app/modules/client/client_control
 import 'package:application_erp_public_flutter/app/modules/customer/customer_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/order/order_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/product/product_controller.dart';
+import 'package:application_erp_public_flutter/app/shared/components/row_client_widget.dart';
 import 'package:application_erp_public_flutter/app/shared/components/row_customer_widget.dart';
+import 'package:application_erp_public_flutter/app/shared/components/row_product_widget.dart';
 import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/customer_list_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/product_list_model.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 
 class OrderCreatePage extends StatefulWidget {
-  OrderCreatePage() : super();
+  const OrderCreatePage({Key? key}) : super(key: key);
 
   @override
   _OrderCreatePageState createState() => _OrderCreatePageState();
 }
 
 class _OrderCreatePageState extends State<OrderCreatePage> {
-  AutoCompleteTextField searchTextNameCustomer;
-  AutoCompleteTextField searchTextNameClient;
-  AutoCompleteTextField searchTextNameProduct;
+  late AutoCompleteTextField searchTextNameCustomer;
+  late AutoCompleteTextField searchTextNameClient;
+  late AutoCompleteTextField searchTextNameProduct;
 
   GlobalKey<AutoCompleteTextFieldState<CustomerListModel>> keyCustomer =
       GlobalKey();
@@ -42,14 +45,14 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData _queryData = MediaQuery.of(context);
+    MediaQueryData queryData = MediaQuery.of(context);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Agendamento"),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.only(right: 4),
+            padding: const EdgeInsets.only(right: 4),
             child: IconButton(
               icon: const Icon(
                 Icons.check,
@@ -112,7 +115,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                   ),
                 ),
                 SizedBox(
-                  width: _queryData.size.width / 1.301,
+                  width: queryData.size.width / 1.301,
                   child: searchTextNameCustomer =
                       AutoCompleteTextField<CustomerListModel>(
                     key: keyCustomer,
@@ -164,17 +167,17 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                   ),
                 ),
                 SizedBox(
-                  width: _queryData.size.width / 1.301,
+                  width: queryData.size.width / 1.301,
                   child: searchTextNameClient =
                       AutoCompleteTextField<ClientListModel>(
                     key: keyClient,
                     clearOnSubmit: false,
                     suggestions: _clientController.clients.value,
-                    style: TextStyle(color: Colors.black, fontSize: 16.0),
+                    style: const TextStyle(color: Colors.black, fontSize: 16.0),
                     decoration: InputDecoration(
                       hintText: "Pesquisa por nome",
                       alignLabelWithHint: false,
-                      counterStyle: TextStyle(color: Colors.transparent),
+                      counterStyle: const TextStyle(color: Colors.transparent),
                       labelText: "Nome do Cliente",
                       labelStyle: TextStyle(
                         color: Theme.of(context).accentColor,
@@ -194,7 +197,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                       _orderController.idClient = item.sId;
                       setState(
                         () {
-                          searchTextNameClient.textField.controller.text =
+                          searchTextNameClient.textField.controller?.text =
                               item.name;
                         },
                       );
@@ -209,8 +212,8 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
             Row(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(right: 16),
-                  child: Icon(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: const Icon(
                     Icons.timer,
                     color: Colors.grey,
                   ),
@@ -246,20 +249,20 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(right: 16),
-                  child: Icon(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: const Icon(
                     Icons.description,
                     color: Colors.grey,
                   ),
                 ),
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     height: 50,
                     child: Observer(
                       builder: (_) => DropdownButton(
@@ -287,7 +290,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                             );
                           },
                         ).toList(),
-                        onChanged: (String newValue) {
+                        onChanged: (dynamic newValue) {
                           _orderController.status = newValue;
                         },
                       ),
@@ -296,20 +299,20 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(right: 16),
-                  child: Icon(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: const Icon(
                     Icons.attach_money,
                     color: Colors.grey,
                   ),
                 ),
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     height: 50,
                     child: Observer(
                       builder: (_) => DropdownButton(
@@ -337,7 +340,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                             );
                           },
                         ).toList(),
-                        onChanged: (String newValue) {
+                        onChanged: (dynamic newValue) {
                           _orderController.payment = newValue;
                         },
                       ),
@@ -349,24 +352,24 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
             Row(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(right: 16),
-                  child: Icon(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: const Icon(
                     Icons.search,
                     color: Colors.grey,
                   ),
                 ),
-                Container(
-                  width: _queryData.size.width / 1.29,
+                SizedBox(
+                  width: queryData.size.width / 1.29,
                   child: searchTextNameProduct =
                       AutoCompleteTextField<ProductListModel>(
                     key: keyProduct,
                     clearOnSubmit: false,
                     suggestions: _productController.products.value,
-                    style: TextStyle(color: Colors.black, fontSize: 16.0),
+                    style: const TextStyle(color: Colors.black, fontSize: 16.0),
                     decoration: InputDecoration(
                       hintText: "Pesquisa por nome",
                       alignLabelWithHint: false,
-                      counterStyle: TextStyle(color: Colors.transparent),
+                      counterStyle: const TextStyle(color: Colors.transparent),
                       labelText: "Nome do Serviço",
                       labelStyle: TextStyle(
                         color: Theme.of(context).accentColor,
@@ -395,7 +398,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
 
                       setState(
                         () {
-                          searchTextNameProduct.textField.controller.text =
+                          searchTextNameProduct.textField.controller?.text =
                               item.title;
                         },
                       );
@@ -407,7 +410,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
@@ -418,7 +421,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: SingleChildScrollView(
-                padding: EdgeInsets.all(3),
+                padding: const EdgeInsets.all(3),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -427,15 +430,15 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                       padding: const EdgeInsets.only(bottom: 5, top: 5),
                       child: Row(
                         children: <Widget>[
-                          Text(
+                          const Text(
                             "Serviços",
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w800),
                           ),
                           SizedBox(
-                            width: _queryData.size.width / 2.1,
+                            width: queryData.size.width / 2.1,
                           ),
-                          Text(
+                          const Text(
                             "  Valor",
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w800),
@@ -446,32 +449,32 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                     for (Map<String, dynamic> p in _orderController.listProduct)
                       Row(
                         children: <Widget>[
-                          Container(
-                            width: _queryData.size.width / 1.6,
+                          SizedBox(
+                            width: queryData.size.width / 1.6,
                             child: Text(p['title']),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
-                          Container(
-                            width: _queryData.size.width / 5.5,
+                          SizedBox(
+                            width: queryData.size.width / 5.5,
                             child: Text('   ${p['price'].toString()}'),
                           ),
                         ],
                       ),
-                    Divider(),
+                    const Divider(),
                     Row(
                       children: <Widget>[
-                        Container(
-                          width: _queryData.size.width / 1.6,
-                          child: Text('Total:'),
-                        ),
                         SizedBox(
+                          width: queryData.size.width / 1.6,
+                          child: const Text('Total:'),
+                        ),
+                        const SizedBox(
                           height: 30,
                         ),
                         Observer(
-                          builder: (_) => Container(
-                            width: _queryData.size.width / 5.5,
+                          builder: (_) => SizedBox(
+                            width: queryData.size.width / 5.5,
                             child: Text(
                               '   ${_orderController.changeSubtotal()}',
                             ),

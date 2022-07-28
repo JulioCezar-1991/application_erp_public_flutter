@@ -6,105 +6,122 @@ part of 'login_controller.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$LoginController on _LoginControllerBase, Store {
-  final _$emailAtom = Atom(name: '_LoginControllerBase.email');
+mixin _$LoginController on LoginControllerBase, Store {
+  late final _$emailAtom =
+      Atom(name: 'LoginControllerBase.email', context: context);
 
   @override
   String get email {
-    _$emailAtom.context.enforceReadPolicy(_$emailAtom);
-    _$emailAtom.reportObserved();
+    _$emailAtom.reportRead();
     return super.email;
   }
 
   @override
   set email(String value) {
-    _$emailAtom.context.conditionallyRunInAction(() {
+    _$emailAtom.reportWrite(value, super.email, () {
       super.email = value;
-      _$emailAtom.reportChanged();
-    }, _$emailAtom, name: '${_$emailAtom.name}_set');
+    });
   }
 
-  final _$passwordAtom = Atom(name: '_LoginControllerBase.password');
+  late final _$passwordAtom =
+      Atom(name: 'LoginControllerBase.password', context: context);
 
   @override
   String get password {
-    _$passwordAtom.context.enforceReadPolicy(_$passwordAtom);
-    _$passwordAtom.reportObserved();
+    _$passwordAtom.reportRead();
     return super.password;
   }
 
   @override
   set password(String value) {
-    _$passwordAtom.context.conditionallyRunInAction(() {
+    _$passwordAtom.reportWrite(value, super.password, () {
       super.password = value;
-      _$passwordAtom.reportChanged();
-    }, _$passwordAtom, name: '${_$passwordAtom.name}_set');
+    });
   }
 
-  final _$_LoginControllerBaseActionController =
-      ActionController(name: '_LoginControllerBase');
+  late final _$LoginControllerBaseActionController =
+      ActionController(name: 'LoginControllerBase', context: context);
 
   @override
-  void validateEmail(String value) {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction();
+  void validateEmail(dynamic value) {
+    final _$actionInfo = _$LoginControllerBaseActionController.startAction(
+        name: 'LoginControllerBase.validateEmail');
     try {
       return super.validateEmail(value);
     } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+      _$LoginControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void validatePassword(String value) {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction();
+  void validatePassword(dynamic value) {
+    final _$actionInfo = _$LoginControllerBaseActionController.startAction(
+        name: 'LoginControllerBase.validatePassword');
     try {
       return super.validatePassword(value);
     } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+      _$LoginControllerBaseActionController.endAction(_$actionInfo);
     }
+  }
+
+  @override
+  String toString() {
+    return '''
+email: ${email},
+password: ${password}
+    ''';
   }
 }
 
 mixin _$FormLoginErrorState on _FormLoginErrorState, Store {
-  Computed<bool> _$hasErrorsComputed;
+  Computed<bool>? _$hasErrorsComputed;
 
   @override
   bool get hasErrors =>
-      (_$hasErrorsComputed ??= Computed<bool>(() => super.hasErrors)).value;
+      (_$hasErrorsComputed ??= Computed<bool>(() => super.hasErrors,
+              name: '_FormLoginErrorState.hasErrors'))
+          .value;
 
-  final _$emailAtom = Atom(name: '_FormLoginErrorState.email');
+  late final _$emailAtom =
+      Atom(name: '_FormLoginErrorState.email', context: context);
 
   @override
   String get email {
-    _$emailAtom.context.enforceReadPolicy(_$emailAtom);
-    _$emailAtom.reportObserved();
+    _$emailAtom.reportRead();
     return super.email;
   }
 
   @override
   set email(String value) {
-    _$emailAtom.context.conditionallyRunInAction(() {
+    _$emailAtom.reportWrite(value, super.email, () {
       super.email = value;
-      _$emailAtom.reportChanged();
-    }, _$emailAtom, name: '${_$emailAtom.name}_set');
+    });
   }
 
-  final _$passwordAtom = Atom(name: '_FormLoginErrorState.password');
+  late final _$passwordAtom =
+      Atom(name: '_FormLoginErrorState.password', context: context);
 
   @override
   String get password {
-    _$passwordAtom.context.enforceReadPolicy(_$passwordAtom);
-    _$passwordAtom.reportObserved();
+    _$passwordAtom.reportRead();
     return super.password;
   }
 
   @override
   set password(String value) {
-    _$passwordAtom.context.conditionallyRunInAction(() {
+    _$passwordAtom.reportWrite(value, super.password, () {
       super.password = value;
-      _$passwordAtom.reportChanged();
-    }, _$passwordAtom, name: '${_$passwordAtom.name}_set');
+    });
+  }
+
+  @override
+  String toString() {
+    return '''
+email: ${email},
+password: ${password},
+hasErrors: ${hasErrors}
+    ''';
   }
 }

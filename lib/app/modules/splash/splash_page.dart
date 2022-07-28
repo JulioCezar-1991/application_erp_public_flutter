@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class SplashPage extends StatefulWidget {
+  const SplashPage({Key? key}) : super(key: key);
+
   @override
   _SplashPageState createState() => _SplashPageState();
 }
@@ -13,7 +15,7 @@ class _SplashPageState extends State<SplashPage> {
   final splashController = Modular.get<SplashController>();
 
   startTime() async {
-    Future.delayed(Duration(seconds: 3)).then((v) async {
+    Future.delayed(const Duration(seconds: 3)).then((v) async {
       return splashController.loadUser();
     });
   }
@@ -36,13 +38,13 @@ class _SplashPageState extends State<SplashPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 250,
               child: Image.asset(
                 'assets/logo.png',
               ),
             ),
-            CircularProgressIndicator(
+            const CircularProgressIndicator(
               strokeWidth: 5,
             )
           ],

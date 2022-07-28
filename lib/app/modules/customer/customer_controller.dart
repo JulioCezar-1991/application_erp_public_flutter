@@ -1,17 +1,20 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
+import 'package:application_erp_public_flutter/app/shared/models/customer_create_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/customer_list_model.dart';
+import 'package:application_erp_public_flutter/app/shared/models/customer_model.dart';
+import 'package:application_erp_public_flutter/app/shared/repositories/customer_repository.dart';
 import 'package:mobx/mobx.dart';
-import 'package:projeto_fanap/app/shared/models/customer_create_model.dart';
-import 'package:projeto_fanap/app/shared/models/customer_list_model.dart';
-import 'package:projeto_fanap/app/shared/models/customer_model.dart';
-import 'package:projeto_fanap/app/shared/repositories/customer_repository.dart';
+
 import 'package:validators/validators.dart';
 
 part 'customer_controller.g.dart';
 
-class CustomerController = _CustomerControllerBase with _$CustomerController;
+class CustomerController = CustomerControllerBase with _$CustomerController;
 
-abstract class _CustomerControllerBase with Store {
+abstract class CustomerControllerBase with Store {
   final FormCustomerErrorState error = FormCustomerErrorState();
-  final CustomerRepository repository;
+  late final CustomerRepository repository;
 
   List<String> listRoles = [
     'Administrador',
@@ -19,14 +22,14 @@ abstract class _CustomerControllerBase with Store {
   ];
 
   @observable
-  ObservableFuture<List<CustomerListModel>> customers;
+  late ObservableFuture<List<CustomerListModel>> customers;
 
   @action
   fetchCustomer() {
     customers = repository.getAllCustomer().asObservable();
   }
 
-  _CustomerControllerBase(this.repository) {
+  CustomerControllerBase(repository) {
     fetchCustomer();
   }
 
@@ -35,7 +38,7 @@ abstract class _CustomerControllerBase with Store {
 
   @action
   void validateName(String value) {
-    error.name = isNull(value) || value.isEmpty ? 'Nome inválido' : null;
+    error.name = (isNull(value) || value.isEmpty ? 'Nome inválido' : null)!;
   }
 
   @observable
@@ -43,7 +46,7 @@ abstract class _CustomerControllerBase with Store {
 
   @action
   void validateEmail(String value) {
-    error.email = isEmail(value) ? null : 'Email inválido';
+    error.email = (isEmail(value) ? null : 'Email inválido')!;
   }
 
   @observable
@@ -51,7 +54,8 @@ abstract class _CustomerControllerBase with Store {
 
   @action
   void validateTelCel(String value) {
-    error.telcel = isNull(value) || value.isEmpty ? 'Telefone inválido' : null;
+    error.telcel =
+        (isNull(value) || value.isEmpty ? 'Telefone inválido' : null)!;
   }
 
   @observable
@@ -59,7 +63,8 @@ abstract class _CustomerControllerBase with Store {
 
   @action
   void validateTelFix(String value) {
-    error.telfix = isNull(value) || value.isEmpty ? 'Telefone inválido' : null;
+    error.telfix =
+        (isNull(value) || value.isEmpty ? 'Telefone inválido' : null)!;
   }
 
   @observable
@@ -67,7 +72,8 @@ abstract class _CustomerControllerBase with Store {
 
   @action
   void validateRoles(String value) {
-    error.roles = isNull(value) || value.isEmpty ? 'Telefone inválido' : null;
+    error.roles =
+        (isNull(value) || value.isEmpty ? 'Telefone inválido' : null)!;
   }
 
   /*var customer = CustomerModel();*/
@@ -76,7 +82,8 @@ abstract class _CustomerControllerBase with Store {
 
   @action
   void validatePassword(String value) {
-    error.password = isNull(value) || value.isEmpty ? 'Senha invalida' : null;
+    error.password =
+        (isNull(value) || value.isEmpty ? 'Senha invalida' : null)!;
   }
 
   @observable
@@ -93,10 +100,11 @@ abstract class _CustomerControllerBase with Store {
       var res = await repository.customerPost(model);
       return res;
     } catch (ex) {
+      // ignore: avoid_print
       print(ex);
-      dataClientModel = null;
+      dataClientModel = model;
     }
-    return null;
+    return model.email;
   }
 
   void validateAll() async {
@@ -120,22 +128,22 @@ class FormCustomerErrorState = _FormcustomerErrorState
 
 abstract class _FormcustomerErrorState with Store {
   @observable
-  String name;
+  late String name;
 
   @observable
-  String telcel;
+  late String telcel;
 
   @observable
-  String telfix;
+  late String telfix;
 
   @observable
-  String email;
+  late String email;
 
   @observable
-  String password;
+  late String password;
 
   @observable
-  String roles;
+  late String roles;
 
   @computed
   bool get hasErrors =>

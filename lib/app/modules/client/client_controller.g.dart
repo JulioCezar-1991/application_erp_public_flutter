@@ -6,458 +6,479 @@ part of 'client_controller.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$ClientController on _ClientControllerBase, Store {
-  final _$clientsAtom = Atom(name: '_ClientControllerBase.clients');
+mixin _$ClientController on ClientControllerBase, Store {
+  late final _$clientsAtom =
+      Atom(name: 'ClientControllerBase.clients', context: context);
 
   @override
   ObservableFuture<List<ClientListModel>> get clients {
-    _$clientsAtom.context.enforceReadPolicy(_$clientsAtom);
-    _$clientsAtom.reportObserved();
+    _$clientsAtom.reportRead();
     return super.clients;
   }
 
   @override
   set clients(ObservableFuture<List<ClientListModel>> value) {
-    _$clientsAtom.context.conditionallyRunInAction(() {
+    _$clientsAtom.reportWrite(value, super.clients, () {
       super.clients = value;
-      _$clientsAtom.reportChanged();
-    }, _$clientsAtom, name: '${_$clientsAtom.name}_set');
+    });
   }
 
-  final _$nameAtom = Atom(name: '_ClientControllerBase.name');
+  late final _$nameAtom =
+      Atom(name: 'ClientControllerBase.name', context: context);
 
   @override
   String get name {
-    _$nameAtom.context.enforceReadPolicy(_$nameAtom);
-    _$nameAtom.reportObserved();
+    _$nameAtom.reportRead();
     return super.name;
   }
 
   @override
   set name(String value) {
-    _$nameAtom.context.conditionallyRunInAction(() {
+    _$nameAtom.reportWrite(value, super.name, () {
       super.name = value;
-      _$nameAtom.reportChanged();
-    }, _$nameAtom, name: '${_$nameAtom.name}_set');
+    });
   }
 
-  final _$cpfAtom = Atom(name: '_ClientControllerBase.cpf');
+  late final _$cpfAtom =
+      Atom(name: 'ClientControllerBase.cpf', context: context);
 
   @override
   String get cpf {
-    _$cpfAtom.context.enforceReadPolicy(_$cpfAtom);
-    _$cpfAtom.reportObserved();
+    _$cpfAtom.reportRead();
     return super.cpf;
   }
 
   @override
   set cpf(String value) {
-    _$cpfAtom.context.conditionallyRunInAction(() {
+    _$cpfAtom.reportWrite(value, super.cpf, () {
       super.cpf = value;
-      _$cpfAtom.reportChanged();
-    }, _$cpfAtom, name: '${_$cpfAtom.name}_set');
+    });
   }
 
-  final _$emailAtom = Atom(name: '_ClientControllerBase.email');
+  late final _$emailAtom =
+      Atom(name: 'ClientControllerBase.email', context: context);
 
   @override
   String get email {
-    _$emailAtom.context.enforceReadPolicy(_$emailAtom);
-    _$emailAtom.reportObserved();
+    _$emailAtom.reportRead();
     return super.email;
   }
 
   @override
   set email(String value) {
-    _$emailAtom.context.conditionallyRunInAction(() {
+    _$emailAtom.reportWrite(value, super.email, () {
       super.email = value;
-      _$emailAtom.reportChanged();
-    }, _$emailAtom, name: '${_$emailAtom.name}_set');
+    });
   }
 
-  final _$telcelAtom = Atom(name: '_ClientControllerBase.telcel');
+  late final _$telcelAtom =
+      Atom(name: 'ClientControllerBase.telcel', context: context);
 
   @override
   String get telcel {
-    _$telcelAtom.context.enforceReadPolicy(_$telcelAtom);
-    _$telcelAtom.reportObserved();
+    _$telcelAtom.reportRead();
     return super.telcel;
   }
 
   @override
   set telcel(String value) {
-    _$telcelAtom.context.conditionallyRunInAction(() {
+    _$telcelAtom.reportWrite(value, super.telcel, () {
       super.telcel = value;
-      _$telcelAtom.reportChanged();
-    }, _$telcelAtom, name: '${_$telcelAtom.name}_set');
+    });
   }
 
-  final _$telfixAtom = Atom(name: '_ClientControllerBase.telfix');
+  late final _$telfixAtom =
+      Atom(name: 'ClientControllerBase.telfix', context: context);
 
   @override
   String get telfix {
-    _$telfixAtom.context.enforceReadPolicy(_$telfixAtom);
-    _$telfixAtom.reportObserved();
+    _$telfixAtom.reportRead();
     return super.telfix;
   }
 
   @override
   set telfix(String value) {
-    _$telfixAtom.context.conditionallyRunInAction(() {
+    _$telfixAtom.reportWrite(value, super.telfix, () {
       super.telfix = value;
-      _$telfixAtom.reportChanged();
-    }, _$telfixAtom, name: '${_$telfixAtom.name}_set');
+    });
   }
 
-  final _$addressAtom = Atom(name: '_ClientControllerBase.address');
+  late final _$addressAtom =
+      Atom(name: 'ClientControllerBase.address', context: context);
 
   @override
   String get address {
-    _$addressAtom.context.enforceReadPolicy(_$addressAtom);
-    _$addressAtom.reportObserved();
+    _$addressAtom.reportRead();
     return super.address;
   }
 
   @override
   set address(String value) {
-    _$addressAtom.context.conditionallyRunInAction(() {
+    _$addressAtom.reportWrite(value, super.address, () {
       super.address = value;
-      _$addressAtom.reportChanged();
-    }, _$addressAtom, name: '${_$addressAtom.name}_set');
+    });
   }
 
-  final _$sectorAtom = Atom(name: '_ClientControllerBase.sector');
+  late final _$sectorAtom =
+      Atom(name: 'ClientControllerBase.sector', context: context);
 
   @override
   String get sector {
-    _$sectorAtom.context.enforceReadPolicy(_$sectorAtom);
-    _$sectorAtom.reportObserved();
+    _$sectorAtom.reportRead();
     return super.sector;
   }
 
   @override
   set sector(String value) {
-    _$sectorAtom.context.conditionallyRunInAction(() {
+    _$sectorAtom.reportWrite(value, super.sector, () {
       super.sector = value;
-      _$sectorAtom.reportChanged();
-    }, _$sectorAtom, name: '${_$sectorAtom.name}_set');
+    });
   }
 
-  final _$cityAtom = Atom(name: '_ClientControllerBase.city');
+  late final _$cityAtom =
+      Atom(name: 'ClientControllerBase.city', context: context);
 
   @override
   String get city {
-    _$cityAtom.context.enforceReadPolicy(_$cityAtom);
-    _$cityAtom.reportObserved();
+    _$cityAtom.reportRead();
     return super.city;
   }
 
   @override
   set city(String value) {
-    _$cityAtom.context.conditionallyRunInAction(() {
+    _$cityAtom.reportWrite(value, super.city, () {
       super.city = value;
-      _$cityAtom.reportChanged();
-    }, _$cityAtom, name: '${_$cityAtom.name}_set');
+    });
   }
 
-  final _$stateAtom = Atom(name: '_ClientControllerBase.state');
+  late final _$stateAtom =
+      Atom(name: 'ClientControllerBase.state', context: context);
 
   @override
   String get state {
-    _$stateAtom.context.enforceReadPolicy(_$stateAtom);
-    _$stateAtom.reportObserved();
+    _$stateAtom.reportRead();
     return super.state;
   }
 
   @override
   set state(String value) {
-    _$stateAtom.context.conditionallyRunInAction(() {
+    _$stateAtom.reportWrite(value, super.state, () {
       super.state = value;
-      _$stateAtom.reportChanged();
-    }, _$stateAtom, name: '${_$stateAtom.name}_set');
+    });
   }
 
-  final _$dataClientModelAtom =
-      Atom(name: '_ClientControllerBase.dataClientModel');
+  late final _$dataClientModelAtom =
+      Atom(name: 'ClientControllerBase.dataClientModel', context: context);
 
   @override
   ClientCreateModel get dataClientModel {
-    _$dataClientModelAtom.context.enforceReadPolicy(_$dataClientModelAtom);
-    _$dataClientModelAtom.reportObserved();
+    _$dataClientModelAtom.reportRead();
     return super.dataClientModel;
   }
 
   @override
   set dataClientModel(ClientCreateModel value) {
-    _$dataClientModelAtom.context.conditionallyRunInAction(() {
+    _$dataClientModelAtom.reportWrite(value, super.dataClientModel, () {
       super.dataClientModel = value;
-      _$dataClientModelAtom.reportChanged();
-    }, _$dataClientModelAtom, name: '${_$dataClientModelAtom.name}_set');
+    });
   }
 
-  final _$_ClientControllerBaseActionController =
-      ActionController(name: '_ClientControllerBase');
+  late final _$ClientControllerBaseActionController =
+      ActionController(name: 'ClientControllerBase', context: context);
 
   @override
   dynamic fetchClient() {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    final _$actionInfo = _$ClientControllerBaseActionController.startAction(
+        name: 'ClientControllerBase.fetchClient');
     try {
       return super.fetchClient();
     } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+      _$ClientControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void validateName(String value) {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    final _$actionInfo = _$ClientControllerBaseActionController.startAction(
+        name: 'ClientControllerBase.validateName');
     try {
       return super.validateName(value);
     } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+      _$ClientControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void validateCPF(String value) {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    final _$actionInfo = _$ClientControllerBaseActionController.startAction(
+        name: 'ClientControllerBase.validateCPF');
     try {
       return super.validateCPF(value);
     } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+      _$ClientControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void validateEmail(String value) {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    final _$actionInfo = _$ClientControllerBaseActionController.startAction(
+        name: 'ClientControllerBase.validateEmail');
     try {
       return super.validateEmail(value);
     } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+      _$ClientControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void validateTelCel(String value) {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    final _$actionInfo = _$ClientControllerBaseActionController.startAction(
+        name: 'ClientControllerBase.validateTelCel');
     try {
       return super.validateTelCel(value);
     } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+      _$ClientControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void validateTelFix(String value) {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    final _$actionInfo = _$ClientControllerBaseActionController.startAction(
+        name: 'ClientControllerBase.validateTelFix');
     try {
       return super.validateTelFix(value);
     } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+      _$ClientControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void validateAddress(String value) {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    final _$actionInfo = _$ClientControllerBaseActionController.startAction(
+        name: 'ClientControllerBase.validateAddress');
     try {
       return super.validateAddress(value);
     } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+      _$ClientControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void validateSector(String value) {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    final _$actionInfo = _$ClientControllerBaseActionController.startAction(
+        name: 'ClientControllerBase.validateSector');
     try {
       return super.validateSector(value);
     } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+      _$ClientControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void validateCity(String value) {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    final _$actionInfo = _$ClientControllerBaseActionController.startAction(
+        name: 'ClientControllerBase.validateCity');
     try {
       return super.validateCity(value);
     } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+      _$ClientControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void validateState(String value) {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    final _$actionInfo = _$ClientControllerBaseActionController.startAction(
+        name: 'ClientControllerBase.validateState');
     try {
       return super.validateState(value);
     } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+      _$ClientControllerBaseActionController.endAction(_$actionInfo);
     }
+  }
+
+  @override
+  String toString() {
+    return '''
+clients: ${clients},
+name: ${name},
+cpf: ${cpf},
+email: ${email},
+telcel: ${telcel},
+telfix: ${telfix},
+address: ${address},
+sector: ${sector},
+city: ${city},
+state: ${state},
+dataClientModel: ${dataClientModel}
+    ''';
   }
 }
 
-mixin _$FormClientErrorState on _FormClientErrorState, Store {
-  Computed<bool> _$hasErrorsComputed;
+mixin _$FormClientErrorState on FormClientError, Store {
+  Computed<bool>? _$hasErrorsComputed;
 
   @override
   bool get hasErrors =>
-      (_$hasErrorsComputed ??= Computed<bool>(() => super.hasErrors)).value;
+      (_$hasErrorsComputed ??= Computed<bool>(() => super.hasErrors,
+              name: 'FormClientError.hasErrors'))
+          .value;
 
-  final _$nameAtom = Atom(name: '_FormClientErrorState.name');
+  late final _$nameAtom = Atom(name: 'FormClientError.name', context: context);
 
   @override
   String get name {
-    _$nameAtom.context.enforceReadPolicy(_$nameAtom);
-    _$nameAtom.reportObserved();
+    _$nameAtom.reportRead();
     return super.name;
   }
 
   @override
   set name(String value) {
-    _$nameAtom.context.conditionallyRunInAction(() {
+    _$nameAtom.reportWrite(value, super.name, () {
       super.name = value;
-      _$nameAtom.reportChanged();
-    }, _$nameAtom, name: '${_$nameAtom.name}_set');
+    });
   }
 
-  final _$cpfAtom = Atom(name: '_FormClientErrorState.cpf');
+  late final _$cpfAtom = Atom(name: 'FormClientError.cpf', context: context);
 
   @override
   String get cpf {
-    _$cpfAtom.context.enforceReadPolicy(_$cpfAtom);
-    _$cpfAtom.reportObserved();
+    _$cpfAtom.reportRead();
     return super.cpf;
   }
 
   @override
   set cpf(String value) {
-    _$cpfAtom.context.conditionallyRunInAction(() {
+    _$cpfAtom.reportWrite(value, super.cpf, () {
       super.cpf = value;
-      _$cpfAtom.reportChanged();
-    }, _$cpfAtom, name: '${_$cpfAtom.name}_set');
+    });
   }
 
-  final _$telcelAtom = Atom(name: '_FormClientErrorState.telcel');
+  late final _$telcelAtom =
+      Atom(name: 'FormClientError.telcel', context: context);
 
   @override
   String get telcel {
-    _$telcelAtom.context.enforceReadPolicy(_$telcelAtom);
-    _$telcelAtom.reportObserved();
+    _$telcelAtom.reportRead();
     return super.telcel;
   }
 
   @override
   set telcel(String value) {
-    _$telcelAtom.context.conditionallyRunInAction(() {
+    _$telcelAtom.reportWrite(value, super.telcel, () {
       super.telcel = value;
-      _$telcelAtom.reportChanged();
-    }, _$telcelAtom, name: '${_$telcelAtom.name}_set');
+    });
   }
 
-  final _$telfixAtom = Atom(name: '_FormClientErrorState.telfix');
+  late final _$telfixAtom =
+      Atom(name: 'FormClientError.telfix', context: context);
 
   @override
   String get telfix {
-    _$telfixAtom.context.enforceReadPolicy(_$telfixAtom);
-    _$telfixAtom.reportObserved();
+    _$telfixAtom.reportRead();
     return super.telfix;
   }
 
   @override
   set telfix(String value) {
-    _$telfixAtom.context.conditionallyRunInAction(() {
+    _$telfixAtom.reportWrite(value, super.telfix, () {
       super.telfix = value;
-      _$telfixAtom.reportChanged();
-    }, _$telfixAtom, name: '${_$telfixAtom.name}_set');
+    });
   }
 
-  final _$emailAtom = Atom(name: '_FormClientErrorState.email');
+  late final _$emailAtom =
+      Atom(name: 'FormClientError.email', context: context);
 
   @override
   String get email {
-    _$emailAtom.context.enforceReadPolicy(_$emailAtom);
-    _$emailAtom.reportObserved();
+    _$emailAtom.reportRead();
     return super.email;
   }
 
   @override
   set email(String value) {
-    _$emailAtom.context.conditionallyRunInAction(() {
+    _$emailAtom.reportWrite(value, super.email, () {
       super.email = value;
-      _$emailAtom.reportChanged();
-    }, _$emailAtom, name: '${_$emailAtom.name}_set');
+    });
   }
 
-  final _$addressAtom = Atom(name: '_FormClientErrorState.address');
+  late final _$addressAtom =
+      Atom(name: 'FormClientError.address', context: context);
 
   @override
   String get address {
-    _$addressAtom.context.enforceReadPolicy(_$addressAtom);
-    _$addressAtom.reportObserved();
+    _$addressAtom.reportRead();
     return super.address;
   }
 
   @override
   set address(String value) {
-    _$addressAtom.context.conditionallyRunInAction(() {
+    _$addressAtom.reportWrite(value, super.address, () {
       super.address = value;
-      _$addressAtom.reportChanged();
-    }, _$addressAtom, name: '${_$addressAtom.name}_set');
+    });
   }
 
-  final _$sectorAtom = Atom(name: '_FormClientErrorState.sector');
+  late final _$sectorAtom =
+      Atom(name: 'FormClientError.sector', context: context);
 
   @override
   String get sector {
-    _$sectorAtom.context.enforceReadPolicy(_$sectorAtom);
-    _$sectorAtom.reportObserved();
+    _$sectorAtom.reportRead();
     return super.sector;
   }
 
   @override
   set sector(String value) {
-    _$sectorAtom.context.conditionallyRunInAction(() {
+    _$sectorAtom.reportWrite(value, super.sector, () {
       super.sector = value;
-      _$sectorAtom.reportChanged();
-    }, _$sectorAtom, name: '${_$sectorAtom.name}_set');
+    });
   }
 
-  final _$cityAtom = Atom(name: '_FormClientErrorState.city');
+  late final _$cityAtom = Atom(name: 'FormClientError.city', context: context);
 
   @override
   String get city {
-    _$cityAtom.context.enforceReadPolicy(_$cityAtom);
-    _$cityAtom.reportObserved();
+    _$cityAtom.reportRead();
     return super.city;
   }
 
   @override
   set city(String value) {
-    _$cityAtom.context.conditionallyRunInAction(() {
+    _$cityAtom.reportWrite(value, super.city, () {
       super.city = value;
-      _$cityAtom.reportChanged();
-    }, _$cityAtom, name: '${_$cityAtom.name}_set');
+    });
   }
 
-  final _$stateAtom = Atom(name: '_FormClientErrorState.state');
+  late final _$stateAtom =
+      Atom(name: 'FormClientError.state', context: context);
 
   @override
   String get state {
-    _$stateAtom.context.enforceReadPolicy(_$stateAtom);
-    _$stateAtom.reportObserved();
+    _$stateAtom.reportRead();
     return super.state;
   }
 
   @override
   set state(String value) {
-    _$stateAtom.context.conditionallyRunInAction(() {
+    _$stateAtom.reportWrite(value, super.state, () {
       super.state = value;
-      _$stateAtom.reportChanged();
-    }, _$stateAtom, name: '${_$stateAtom.name}_set');
+    });
+  }
+
+  @override
+  String toString() {
+    return '''
+name: ${name},
+cpf: ${cpf},
+telcel: ${telcel},
+telfix: ${telfix},
+email: ${email},
+address: ${address},
+sector: ${sector},
+city: ${city},
+state: ${state},
+hasErrors: ${hasErrors}
+    ''';
   }
 }

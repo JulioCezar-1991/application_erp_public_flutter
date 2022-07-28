@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AnalyticsPage extends StatefulWidget {
+  const AnalyticsPage({Key? key}) : super(key: key);
+
   @override
   _AnalyticsPageState createState() => _AnalyticsPageState();
 }
@@ -8,7 +10,7 @@ class AnalyticsPage extends StatefulWidget {
 class _AnalyticsPageState extends State<AnalyticsPage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("Analise de Serviços"),
     );
   }

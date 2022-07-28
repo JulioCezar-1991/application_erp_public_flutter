@@ -1,12 +1,12 @@
 class OrderModel {
-  String id;
-  String formPayment;
-  String status;
-  String customer;
-  String client;
-  String schedulingdate;
-  List<Itens> itens;
-  double subtotal;
+  dynamic id;
+  dynamic formPayment;
+  dynamic status;
+  dynamic customer;
+  dynamic client;
+  dynamic schedulingdate;
+  dynamic itens;
+  dynamic subtotal;
 
   OrderModel(
       {this.id,
@@ -26,54 +26,54 @@ class OrderModel {
     client = json['client'];
     schedulingdate = json['schedulingdate'];
     if (json['itens'] != null) {
-      itens = new List<Itens>();
+      itens = List<Itens>;
       json['itens'].forEach((v) {
-        itens.add(new Itens.fromJson(v));
+        itens.add(Itens.fromJson(v));
       });
     }
     subtotal = json['subtotal'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['formPayment'] = this.formPayment;
-    data['status'] = this.status;
-    data['customer'] = this.customer;
-    data['client'] = this.client;
-    data['schedulingdate'] = this.schedulingdate;
-    if (this.itens != null) {
-      data['itens'] = this.itens.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['formPayment'] = formPayment;
+    data['status'] = status;
+    data['customer'] = customer;
+    data['client'] = client;
+    data['schedulingdate'] = schedulingdate;
+    if (itens != null) {
+      data['itens'] = itens.map((v) => v.toJson()).toList();
     }
-    data['subtotal'] = this.subtotal;
+    data['subtotal'] = subtotal;
     return data;
   }
 }
 
 class Itens {
-  Product product;
+  dynamic product;
 
   Itens({this.product});
 
   Itens.fromJson(Map<String, dynamic> json) {
     product =
-        json['product'] != null ? new Product.fromJson(json['product']) : null;
+        json['product'] != null ? Product.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.product != null) {
-      data['product'] = this.product.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (product != null) {
+      data['product'] = product.toJson();
     }
     return data;
   }
 }
 
 class Product {
-  String sId;
-  String title;
-  double price;
-  String averagetime;
+  dynamic sId;
+  dynamic title;
+  dynamic price;
+  dynamic averagetime;
 
   Product({this.sId, this.title, this.price, this.averagetime});
 
@@ -85,11 +85,11 @@ class Product {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['title'] = this.title;
-    data['price'] = this.price;
-    data['averagetime'] = this.averagetime;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['title'] = title;
+    data['price'] = price;
+    data['averagetime'] = averagetime;
     return data;
   }
 }

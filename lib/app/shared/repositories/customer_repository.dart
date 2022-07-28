@@ -8,8 +8,6 @@ class CustomerRepository {
 
   CustomerRepository(this.dio);
 
-  CustomerModel customerModel = CustomerModel();
-
   Future<List<CustomerListModel>> getAllCustomer() async {
     Response response = await dio.get('/customers');
     return (response.data as List)

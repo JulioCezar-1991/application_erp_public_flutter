@@ -1,3 +1,4 @@
+import 'package:application_erp_public_flutter/app/modules/home/home_module.dart';
 import 'package:application_erp_public_flutter/app/modules/splash/splash_module.dart';
 import 'package:application_erp_public_flutter/app/shared/utils/setting_util.dart';
 import 'package:dio/dio.dart';

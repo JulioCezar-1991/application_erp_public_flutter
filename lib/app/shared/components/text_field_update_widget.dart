@@ -7,7 +7,7 @@ class TextFieldUpdate extends StatelessWidget {
   final TextInputType keyboardType;
   final ValueChanged onChanged;
   final dynamic inputFormatters;
-  final String errorText;
+  final dynamic errorText;
   final dynamic maxLines;
 
   const TextFieldUpdate(
@@ -17,7 +17,7 @@ class TextFieldUpdate extends StatelessWidget {
       required this.keyboardType,
       required this.onChanged,
       this.inputFormatters,
-      required this.errorText,
+      this.errorText,
       this.maxLines})
       : super(key: key);
 

@@ -53,7 +53,7 @@ class _CustomerCreatePageState extends State<CustomerCreatePage> {
                                 color: Theme.of(context).primaryColor),
                           ),
                           onPressed: () {
-                            _customerController.validateAll();
+                            /*  _customerController.validateAll(); */
                             _customerController.fetchCustomer();
                             Modular.to.pushReplacementNamed(
                               '/home',
@@ -98,7 +98,7 @@ class _CustomerCreatePageState extends State<CustomerCreatePage> {
                   onChanged: (value) {
                     _customerController.name = value;
                   },
-                  errorText: _customerController.error.name,
+                  /*  errorText: _customerController.error.name, */
                 ),
               ),
             ),
@@ -117,7 +117,7 @@ class _CustomerCreatePageState extends State<CustomerCreatePage> {
                   onChanged: (value) {
                     _customerController.email = value;
                   },
-                  errorText: _customerController.error.email,
+                  /* errorText: _customerController.error.email, */
                 ),
               ),
             ),
@@ -136,7 +136,7 @@ class _CustomerCreatePageState extends State<CustomerCreatePage> {
                   onChanged: (value) {
                     _customerController.telcel = value;
                   },
-                  errorText: _customerController.error.telcel,
+                  /* errorText: _customerController.error.telcel, */
                 ),
               ),
             ),
@@ -155,7 +155,7 @@ class _CustomerCreatePageState extends State<CustomerCreatePage> {
                   onChanged: (value) {
                     _customerController.telfix = value;
                   },
-                  errorText: _customerController.error.telfix,
+                  /*  errorText: _customerController.error.telfix, */
                 ),
               ),
             ),

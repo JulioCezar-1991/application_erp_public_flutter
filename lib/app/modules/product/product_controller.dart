@@ -15,17 +15,18 @@ class ProductController = ProductControllerBase with _$ProductController;
 
 abstract class ProductControllerBase with Store {
   final FormProductErrorState error = FormProductErrorState();
-  late final ProductRepository repository;
+  final ProductRepository repository;
 
   @observable
-  late ObservableFuture<List<ProductListModel>> products;
+  ObservableFuture<List<ProductListModel>> products =
+      ObservableFuture.value([]);
 
   @action
   fetchProduct() {
     products = repository.getAllProduct().asObservable();
   }
 
-  ProductControllerBase(repository) {
+  ProductControllerBase(this.repository) {
     fetchProduct();
   }
 

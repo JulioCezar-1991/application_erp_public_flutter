@@ -12,9 +12,10 @@ abstract class SplashBase with Store {
   Future loadUser() async {
     var prefs = await SharedPreferences.getInstance();
     var userData = prefs.getString('customer');
-    if (userData != null) {
+    Modular.to.pushReplacementNamed('/home');
+    /* if (userData != null) {
       return Modular.to.pushReplacementNamed('/home');
     }
-    return Modular.to.pushReplacementNamed('/login');
+    return Modular.to.pushReplacementNamed('/login'); */
   }
 }

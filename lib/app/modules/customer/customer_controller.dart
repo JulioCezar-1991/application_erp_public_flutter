@@ -12,7 +12,7 @@ class CustomerController = CustomerControllerBase with _$CustomerController;
 
 abstract class CustomerControllerBase with Store {
   final FormCustomerErrorState error = FormCustomerErrorState();
-  late final CustomerRepository repository;
+  final CustomerRepository repository;
 
   List<String> listRoles = [
     'Administrador',
@@ -20,14 +20,15 @@ abstract class CustomerControllerBase with Store {
   ];
 
   @observable
-  late ObservableFuture<List<CustomerListModel>> customers;
+  ObservableFuture<List<CustomerListModel>> customers =
+      ObservableFuture.value([]);
 
   @action
   fetchCustomer() {
     customers = repository.getAllCustomer().asObservable();
   }
 
-  CustomerControllerBase(repository) {
+  CustomerControllerBase(this.repository) {
     fetchCustomer();
   }
 

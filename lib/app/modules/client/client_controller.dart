@@ -16,17 +16,17 @@ class ClientController = ClientControllerBase with _$ClientController;
 
 abstract class ClientControllerBase with Store {
   final FormClientErrorState error = FormClientErrorState();
-  late final ClientRepository repository;
+  final ClientRepository repository;
 
   @observable
-  late ObservableFuture<List<ClientListModel>> clients;
+  ObservableFuture<List<ClientListModel>> clients = ObservableFuture.value([]);
 
   @action
   fetchClient() {
     clients = repository.getAllClient().asObservable();
   }
 
-  ClientControllerBase(repository) {
+  ClientControllerBase(this.repository) {
     fetchClient();
   }
 

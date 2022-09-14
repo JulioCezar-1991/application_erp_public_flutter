@@ -18,7 +18,7 @@ class OrderController = OrderControllerBase with _$OrderController;
 
 abstract class OrderControllerBase with Store {
   final FormOrderErrorState error = FormOrderErrorState();
-  late final OrderRepository repository;
+  final OrderRepository repository;
 
   List<String> listStatus = [
     'Status do Serviço',
@@ -36,7 +36,8 @@ abstract class OrderControllerBase with Store {
   ];
 
   @observable
-  late ObservableFuture<List<OrderOpenListModel>> ordersOpen;
+  ObservableFuture<List<OrderOpenListModel>> ordersOpen =
+      ObservableFuture.value([]);
 
   @action
   fetchOrderOpen() {
@@ -44,7 +45,8 @@ abstract class OrderControllerBase with Store {
   }
 
   @observable
-  late ObservableFuture<List<OrderDoneListModel>> ordersDone;
+  ObservableFuture<List<OrderDoneListModel>> ordersDone =
+      ObservableFuture.value([]);
 
   @action
   fetchOrderDone() {
@@ -52,14 +54,15 @@ abstract class OrderControllerBase with Store {
   }
 
   @observable
-  late ObservableFuture<List<OrderCanceledListModel>> ordersCanceled;
+  ObservableFuture<List<OrderCanceledListModel>> ordersCanceled =
+      ObservableFuture.value([]);
 
   @action
   fetchOrderCanceled() {
     ordersCanceled = repository.getOrderCanceled().asObservable();
   }
 
-  OrderControllerBase(repository) {
+  OrderControllerBase(this.repository) {
     fetchOrderOpen();
     fetchOrderDone();
     fetchOrderCanceled();

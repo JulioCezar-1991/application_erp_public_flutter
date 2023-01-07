@@ -60,7 +60,7 @@ abstract class LoginControllerBase with Store {
   void validateAll() async {
     validatePassword(password);
     validateEmail(email);
-    if (error.password == null && error.email == null) {
+    if (error.password.isNotEmpty && error.email.isNotEmpty) {
       authenticate().then((customer) async {
         if (customer != null) {
           return Modular.to.pushReplacementNamed('/home');

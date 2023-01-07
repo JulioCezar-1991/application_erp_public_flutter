@@ -3,11 +3,11 @@
 import 'package:application_erp_public_flutter/app/modules/client/client_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/customer/customer_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/order/order_controller.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_open_list_model.dart';
 import 'package:application_erp_public_flutter/app/shared/components/row_client_widget.dart';
 import 'package:application_erp_public_flutter/app/shared/components/row_customer_widget.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_list_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/customer_list_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_open_list_model.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +80,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                     title:
                         const Text("Confirmar Atualização da Orde de Serviço"),
                     actions: <Widget>[
-                      FlatButton(
+                      ElevatedButton(
                         child: Text(
                           "Confirmar",
                           style:
@@ -96,7 +96,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                           } catch (e) {}
                         },
                       ),
-                      FlatButton(
+                      ElevatedButton(
                         child: Text(
                           "Cancelar",
                           style:
@@ -124,7 +124,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                   return AlertDialog(
                     title: const Text("Confirmar Exclusão do Serviço"),
                     actions: <Widget>[
-                      FlatButton(
+                      ElevatedButton(
                         child: Text(
                           "Confirmar",
                           style:
@@ -140,7 +140,7 @@ class _OrderOpenDetailsPageState extends State<OrderOpenDetailsPage> {
                           } catch (e) {}
                         },
                       ),
-                      FlatButton(
+                      ElevatedButton(
                         child: Text(
                           "Cancelar",
                           style:

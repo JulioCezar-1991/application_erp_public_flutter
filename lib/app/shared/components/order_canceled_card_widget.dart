@@ -1,5 +1,5 @@
 import 'package:application_erp_public_flutter/app/modules/order/order_canceled_details_page.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_canceled_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_canceled_list_model.dart';
 import 'package:flutter/material.dart';
 
 class OrderCanceledCard extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_list_model.dart';
 import 'package:flutter/material.dart';
 
 class RowClientWidget extends StatelessWidget {

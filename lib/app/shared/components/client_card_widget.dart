@@ -1,5 +1,5 @@
 import 'package:application_erp_public_flutter/app/modules/client/client_details_page.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_list_model.dart';
 import 'package:flutter/material.dart';
 
 class ClientCard extends StatelessWidget {
@@ -14,10 +14,11 @@ class ClientCard extends StatelessWidget {
         elevation: 2,
         child: Row(
           children: <Widget>[
-            const SizedBox(
-              width: 80,
-              height: 80,
+            const Expanded(
+              flex: 1,
               child: Center(
+                heightFactor: 1.5,
+                widthFactor: 1,
                 child: Icon(
                   Icons.person,
                   color: Colors.teal,
@@ -26,7 +27,7 @@ class ClientCard extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.height / 3.0,
+              width: MediaQuery.of(context).size.height / 3.2,
               height: 70,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -35,41 +36,41 @@ class ClientCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 3, bottom: 4),
                     child: Text(
-                      item.name != null
+                      item.name.isNotEmpty
                           ? (item.name.length >= 32
-                              ? item.name.substring(0, 29) + '...'
+                              ? '${item.name.substring(0, 29)}...'
                               : item.name)
                           : 'Consumidor Final',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).primaryColor),
                     ),
                   ),
                   Row(
                     children: <Widget>[
                       Text(
-                        item.sector != null
+                        item.sector.isNotEmpty
                             ? (item.sector.length >= 18
-                                ? item.sector.substring(0, 16) + '...'
+                                ? '${item.sector.substring(0, 16)}...'
                                 : item.sector)
                             : 'Sem Setor',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).primaryColor,
                         ),
                       ),
                       const SizedBox(
                         child: Text(" - "),
                       ),
                       Text(
-                        item.city != null
+                        item.city.isNotEmpty
                             ? (item.city.length >= 12
-                                ? item.city.substring(0, 11) + '...'
+                                ? '${item.city.substring(0, 11)}...'
                                 : item.city)
                             : 'Sem Setor',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).primaryColor,
                         ),
                       ),
                     ],
@@ -79,19 +80,20 @@ class ClientCard extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          item.telcel == null ? 'Sem Celular' : item.telcel,
+                          item.telcel ?? 'Sem Celular',
                           style: TextStyle(
-                              fontSize: 12,
-                              color: Theme.of(context).accentColor),
+                            fontSize: 12,
+                            color: Theme.of(context).primaryColor,
+                          ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 22,
                         ),
                         Text(
-                          item.telfix == null ? 'Sem Fone Fixo' : item.telfix,
+                          item.telfix ?? 'Sem Fone Fixo',
                           style: TextStyle(
                               fontSize: 12,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).primaryColor),
                         ),
                       ],
                     ),

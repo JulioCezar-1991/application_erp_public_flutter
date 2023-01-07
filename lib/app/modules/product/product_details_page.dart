@@ -13,7 +13,7 @@ class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({Key? key, required this.item}) : super(key: key);
 
   @override
-  _ProductDetailsPageState createState() => _ProductDetailsPageState();
+  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
@@ -47,7 +47,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     return AlertDialog(
                       title: const Text("Confirmar Atualização do Produto"),
                       actions: <Widget>[
-                        FlatButton(
+                        ElevatedButton(
                           child: const Text(
                             "Confirmar",
                           ),
@@ -58,10 +58,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                               Modular.to.popAndPushNamed(
                                 '/home',
                               );
-                            } catch (e) {}
+                            } catch (e) {
+                              print.call(e);
+                            }
                           },
                         ),
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Cancelar",
                             style: TextStyle(
@@ -92,7 +94,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     return AlertDialog(
                       title: const Text("Confirmar Exclusão do Produto"),
                       actions: <Widget>[
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Confirmar",
                             style: TextStyle(
@@ -105,10 +107,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                               Modular.to.popAndPushNamed(
                                 '/home',
                               );
-                            } catch (e) {}
+                            } catch (e) {
+                              print.call(e);
+                            }
                           },
                         ),
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Cancelar",
                             style: TextStyle(
@@ -162,7 +166,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
-                inputFormatters: [],
                 maxLength: 6,
                 keyboardType: TextInputType.text,
                 initialValue: widget.item.price.toString(),

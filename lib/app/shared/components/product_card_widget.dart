@@ -18,23 +18,24 @@ class ProductCard extends StatelessWidget {
         elevation: 2,
         child: Row(
           children: <Widget>[
-            SizedBox(
-              width: 90,
-              height: 100,
+            const Expanded(
+              flex: 1,
               child: Center(
-                child: Icon(FontAwesomeIcons.cut,
-                    color: Colors.pinkAccent[100], size: 60),
+                heightFactor: 1.5,
+                widthFactor: 1,
+                child: Icon(FontAwesomeIcons.accusoft,
+                    color: Colors.pinkAccent, size: 60),
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.height / 3.1,
-              height: 110,
+              width: MediaQuery.of(context).size.height / 3.2,
+              height: 80,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 8, bottom: 4),
+                    padding: const EdgeInsets.only(top: 3, bottom: 4),
                     child: Text(
                       item.title.length > 22
                           ? item.title.substring(0, 22) + '...'

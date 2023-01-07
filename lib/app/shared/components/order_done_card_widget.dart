@@ -1,5 +1,5 @@
 import 'package:application_erp_public_flutter/app/modules/order/order_done_details_page.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_done_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_done_list_model.dart';
 import 'package:flutter/material.dart';
 
 class OrderDoneCard extends StatelessWidget {
@@ -43,7 +43,7 @@ class OrderDoneCard extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).primaryColor),
                     ),
                   ),
                   Padding(
@@ -53,20 +53,20 @@ class OrderDoneCard extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).primaryColor),
                     ),
                   ),
                   Row(
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.only(top: 3.5, bottom: 4),
+                        padding: const EdgeInsets.only(top: 3.5, bottom: 4),
                         child: Row(
                           children: <Widget>[
                             Text(
                               "Registro: ${item.createDate.substring(8, 10)}/${item.createDate.substring(5, 7)}/${item.createDate.substring(0, 4)}-${item.createDate.substring(11, 13)}:${item.createDate.substring(14, 16)}",
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Theme.of(context).accentColor),
+                                  color: Theme.of(context).primaryColor),
                             ),
                             const SizedBox(
                               width: 15,

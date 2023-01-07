@@ -51,7 +51,7 @@ class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
                     return AlertDialog(
                       title: const Text("Confirmar Atualização do Cliente"),
                       actions: <Widget>[
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Confirmar",
                             style:
@@ -65,10 +65,12 @@ class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
                               Modular.to.popAndPushNamed(
                                 '/home',
                               );
-                            } catch (e) {}
+                            } catch (e) {
+                              print.call(e);
+                            }
                           },
                         ),
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Cancelar",
                             style:
@@ -99,7 +101,7 @@ class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
                     return AlertDialog(
                       title: const Text("Confirmar Exclusão do Cliente"),
                       actions: <Widget>[
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Confirmar",
                             style:
@@ -112,10 +114,12 @@ class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
                               Modular.to.popAndPushNamed(
                                 '/home',
                               );
-                            } catch (e) {}
+                            } catch (e) {
+                              print.call(e);
+                            }
                           },
                         ),
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Cancelar",
                             style:

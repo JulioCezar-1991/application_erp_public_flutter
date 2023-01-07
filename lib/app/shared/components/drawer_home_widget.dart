@@ -8,14 +8,14 @@ class DrawerHomeWidget extends StatefulWidget {
   const DrawerHomeWidget({Key? key}) : super(key: key);
 
   @override
-  _DrawerHomeWidgetState createState() => _DrawerHomeWidgetState();
+  State<DrawerHomeWidget> createState() => _DrawerHomeWidgetState();
 }
 
 class _DrawerHomeWidgetState extends State<DrawerHomeWidget> {
   final controller = Modular.get<HomeController>();
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     return Drawer(
       child: ListView(
@@ -55,7 +55,7 @@ class _DrawerHomeWidgetState extends State<DrawerHomeWidget> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => CustomerPage()),
+                MaterialPageRoute(builder: (_) => const CustomerPage()),
               );
             },
           ),
@@ -68,12 +68,12 @@ class _DrawerHomeWidgetState extends State<DrawerHomeWidget> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => SettingPage()),
+                MaterialPageRoute(builder: (_) => const SettingPage()),
               );
             },
           ),
           SizedBox(
-            height: _size.width / 1.8,
+            height: size.width / 1.8,
           ),
           const Divider(
             endIndent: 18,

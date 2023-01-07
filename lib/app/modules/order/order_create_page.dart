@@ -7,7 +7,7 @@ import 'package:application_erp_public_flutter/app/modules/product/product_contr
 import 'package:application_erp_public_flutter/app/shared/components/row_client_widget.dart';
 import 'package:application_erp_public_flutter/app/shared/components/row_customer_widget.dart';
 import 'package:application_erp_public_flutter/app/shared/components/row_product_widget.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_list_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/customer_list_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/product_list_model.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
@@ -17,11 +17,25 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 class OrderCreatePage extends StatefulWidget {
   const OrderCreatePage({Key? key}) : super(key: key);
 
   @override
-  _OrderCreatePageState createState() => _OrderCreatePageState();
+  State<OrderCreatePage> createState() => _OrderCreatePageState();
 }
 
 class _OrderCreatePageState extends State<OrderCreatePage> {
@@ -64,7 +78,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                     return AlertDialog(
                       title: const Text("Confirmar Agendamento"),
                       actions: <Widget>[
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Salvar",
                             style:
@@ -81,7 +95,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                             );
                           },
                         ),
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Cancelar",
                             style:

@@ -24,9 +24,8 @@ class TextFieldUpdate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      inputFormatters: inputFormatters == null
-          ? [LengthLimitingTextInputFormatter(maxLength)]
-          : inputFormatters,
+      inputFormatters:
+          inputFormatters ?? [LengthLimitingTextInputFormatter(maxLength)],
       keyboardType: keyboardType,
       maxLines: maxLines,
       decoration: InputDecoration(

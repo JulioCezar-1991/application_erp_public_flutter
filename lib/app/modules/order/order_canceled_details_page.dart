@@ -1,11 +1,11 @@
 import 'package:application_erp_public_flutter/app/modules/client/client_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/customer/customer_controller.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_canceled_list_model.dart';
 import 'package:application_erp_public_flutter/app/modules/order/order_controller.dart';
 import 'package:application_erp_public_flutter/app/shared/components/row_client_widget.dart';
 import 'package:application_erp_public_flutter/app/shared/components/row_customer_widget.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_list_model.dart';
 import 'package:application_erp_public_flutter/app/shared/models/customer_list_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_canceled_list_model.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +93,9 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                             Modular.to.popAndPushNamed(
                               '/home',
                             );
-                          } catch (e) {}
+                          } catch (e) {
+                            print.call(e);
+                          }
                         },
                       ),
                       ElevatedButton(
@@ -137,7 +139,9 @@ class _OrderCanceledDetailsPageState extends State<OrderCanceledDetailsPage> {
                             Modular.to.popAndPushNamed(
                               '/home',
                             );
-                          } catch (e) {}
+                          } catch (e) {
+                            print.call(e);
+                          }
                         },
                       ),
                       ElevatedButton(

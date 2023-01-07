@@ -63,7 +63,7 @@ class CustomerCard extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          item.telcel == null ? 'Sem Celular' : item.telcel,
+                          item.telcel ?? 'Sem Celular',
                           style: TextStyle(
                               fontSize: 12,
                               color: Theme.of(context).primaryColor),
@@ -72,7 +72,7 @@ class CustomerCard extends StatelessWidget {
                           width: 22,
                         ),
                         Text(
-                          item.telfix == null ? 'Sem Fone Fixo' : item.telfix,
+                          item.telfix ?? 'Sem Fone Fixo',
                           style: const TextStyle(
                             fontSize: 12,
                           ),

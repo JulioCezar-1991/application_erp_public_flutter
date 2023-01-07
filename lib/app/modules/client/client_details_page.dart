@@ -1,11 +1,8 @@
-// ignore_for_file: avoid_print
-
 import 'package:application_erp_public_flutter/app/modules/client/client_controller.dart';
 import 'package:application_erp_public_flutter/app/shared/components/text_field_update_widget.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_list_model.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
@@ -14,13 +11,13 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 class ClientDetailsPage extends StatefulWidget {
   final ClientListModel item;
 
-  const ClientDetailsPage({Key? key, required this.item}) : super(key: key);
+  const ClientDetailsPage({super.key, required this.item});
 
   @override
-  State<ClientDetailsPage> createState() => _ClientDetailsPageState();
+  ClientDetailsPageState createState() => ClientDetailsPageState();
 }
 
-class _ClientDetailsPageState extends State<ClientDetailsPage> {
+class ClientDetailsPageState extends State<ClientDetailsPage> {
   final _clientController = Modular.get<ClientController>();
   final formKey = GlobalKey<FormState>();
   final format = DateFormat("dd/MM/yyyy");
@@ -188,28 +185,29 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
               ),
             ),
             // Data de Aniversario
-            DateTimeField(
-              key: formKey,
-              initialValue: DateTime.parse(_clientController.date),
-              decoration: InputDecoration(
-                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
-                border: const OutlineInputBorder(),
+            Center(
+              child: DateTimeField(
+                key: formKey,
+                initialValue: DateTime.parse(_clientController.date),
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                  border: const OutlineInputBorder(),
+                ),
+                format: format,
+                onShowPicker: (context, currentValue) async {
+                  final date = await showDatePicker(
+                      context: context,
+                      firstDate: DateTime(1900),
+                      initialDate: currentValue ?? DateTime.now(),
+                      lastDate: DateTime(2100));
+                  if (date != null) {
+                    _clientController.date = date.toString();
+                    print(_clientController.date);
+                  }
+                  return date;
+                },
               ),
-              format: format,
-              onShowPicker: (context, currentValue) async {
-                final date = await showDatePicker(
-                    context: context,
-                    firstDate: DateTime(1900),
-                    initialDate: currentValue ?? DateTime.now(),
-                    lastDate: DateTime(2100));
-                if (date != null) {
-                  _clientController.date = date.toString();
-                  print(_clientController.date);
-                }
-                return date;
-              },
             ),
-
             Padding(
               padding: const EdgeInsets.only(bottom: 5, top: 10),
               child: Container(

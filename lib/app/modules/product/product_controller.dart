@@ -95,7 +95,7 @@ abstract class ProductControllerBase with Store {
       var res = await repository.postProduct(model);
       return res;
     } catch (ex) {
-      print(ex);
+      print.call(ex);
       dataProductModel = model;
     }
     return model.id;
@@ -105,10 +105,10 @@ abstract class ProductControllerBase with Store {
     validateTitle(title);
     validatePrice(price.toString());
     validateDescription(description);
-    if (error.title == null &&
-        error.description == null &&
-        error.price == null &&
-        error.type == null) {
+    if (error.title.isEmpty &&
+        error.description.isEmpty &&
+        error.price.isEmpty &&
+        error.type.isEmpty) {
       _postCreate().then((procuct) async {});
     }
   }
@@ -171,9 +171,9 @@ abstract class FormProductError with Store {
 
   @computed
   bool get hasErrors =>
-      title != null ||
-      price != null ||
-      averagetime != null ||
-      type != null ||
-      description != null;
+      title.isEmpty ||
+      price.isEmpty ||
+      averagetime.isEmpty ||
+      type.isEmpty ||
+      description.isEmpty;
 }

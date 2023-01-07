@@ -1,12 +1,12 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe
 
-import 'package:application_erp_public_flutter/app/shared/models/order_canceled_list_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_create_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_delete_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_done_list_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_open_list_model.dart';
-import 'package:application_erp_public_flutter/app/shared/repositories/order_repository.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_canceled_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_create_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_delete_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_done_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_open_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_repository.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:mobx/mobx.dart';
 
@@ -205,11 +205,11 @@ abstract class OrderControllerBase with Store {
     validateStatus(status);
     validatePayment(payment);
 
-    if (error.idCustomer == null &&
-        error.idClient == null &&
-        error.schedulingDate == null &&
-        error.status == null &&
-        error.payment == null) {
+    if (error.idCustomer.isEmpty &&
+        error.idClient.isEmpty &&
+        error.schedulingDate.isEmpty &&
+        error.status.isEmpty &&
+        error.payment.isEmpty) {
       return _postCreate().then((order) async {});
     }
   }
@@ -235,9 +235,9 @@ abstract class _FormOrderErrorState with Store {
 
   @computed
   bool get hasErrors =>
-      idCustomer != null ||
-      idClient != null ||
-      schedulingDate != null ||
-      payment != null ||
-      status != null;
+      idCustomer.isNotEmpty ||
+      idClient.isNotEmpty ||
+      schedulingDate.isNotEmpty ||
+      payment.isNotEmpty ||
+      status.isNotEmpty;
 }

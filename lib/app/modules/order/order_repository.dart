@@ -1,10 +1,11 @@
-import 'package:application_erp_public_flutter/app/shared/models/order_all_list_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_canceled_list_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_create_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_delete_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_done_list_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_open_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_all_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_canceled_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_create_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_delete_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_done_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_open_list_model.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 

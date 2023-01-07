@@ -5,6 +5,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'client_list_model.dart';
+
 class ClientPage extends StatelessWidget {
   const ClientPage({Key? key}) : super(key: key);
 
@@ -32,7 +34,7 @@ class ClientPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          var list = clientController.clients.value;
+          List<ClientListModel>? list = clientController.clients.result;
           return ListView.builder(
             itemCount: list?.length,
             itemBuilder: (context, index) {

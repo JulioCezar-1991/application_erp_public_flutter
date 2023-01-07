@@ -316,16 +316,17 @@ dataClientModel: ${dataClientModel}
   }
 }
 
-mixin _$FormClientErrorState on FormClientError, Store {
+mixin _$FormClientErrorState on _FormClientErrorState, Store {
   Computed<bool>? _$hasErrorsComputed;
 
   @override
   bool get hasErrors =>
       (_$hasErrorsComputed ??= Computed<bool>(() => super.hasErrors,
-              name: 'FormClientError.hasErrors'))
+              name: '_FormClientErrorState.hasErrors'))
           .value;
 
-  late final _$nameAtom = Atom(name: 'FormClientError.name', context: context);
+  late final _$nameAtom =
+      Atom(name: '_FormClientErrorState.name', context: context);
 
   @override
   String get name {
@@ -340,7 +341,8 @@ mixin _$FormClientErrorState on FormClientError, Store {
     });
   }
 
-  late final _$cpfAtom = Atom(name: 'FormClientError.cpf', context: context);
+  late final _$cpfAtom =
+      Atom(name: '_FormClientErrorState.cpf', context: context);
 
   @override
   String get cpf {
@@ -356,7 +358,7 @@ mixin _$FormClientErrorState on FormClientError, Store {
   }
 
   late final _$telcelAtom =
-      Atom(name: 'FormClientError.telcel', context: context);
+      Atom(name: '_FormClientErrorState.telcel', context: context);
 
   @override
   String get telcel {
@@ -372,7 +374,7 @@ mixin _$FormClientErrorState on FormClientError, Store {
   }
 
   late final _$telfixAtom =
-      Atom(name: 'FormClientError.telfix', context: context);
+      Atom(name: '_FormClientErrorState.telfix', context: context);
 
   @override
   String get telfix {
@@ -388,7 +390,7 @@ mixin _$FormClientErrorState on FormClientError, Store {
   }
 
   late final _$emailAtom =
-      Atom(name: 'FormClientError.email', context: context);
+      Atom(name: '_FormClientErrorState.email', context: context);
 
   @override
   String get email {
@@ -404,7 +406,7 @@ mixin _$FormClientErrorState on FormClientError, Store {
   }
 
   late final _$addressAtom =
-      Atom(name: 'FormClientError.address', context: context);
+      Atom(name: '_FormClientErrorState.address', context: context);
 
   @override
   String get address {
@@ -420,7 +422,7 @@ mixin _$FormClientErrorState on FormClientError, Store {
   }
 
   late final _$sectorAtom =
-      Atom(name: 'FormClientError.sector', context: context);
+      Atom(name: '_FormClientErrorState.sector', context: context);
 
   @override
   String get sector {
@@ -435,7 +437,8 @@ mixin _$FormClientErrorState on FormClientError, Store {
     });
   }
 
-  late final _$cityAtom = Atom(name: 'FormClientError.city', context: context);
+  late final _$cityAtom =
+      Atom(name: '_FormClientErrorState.city', context: context);
 
   @override
   String get city {
@@ -451,7 +454,7 @@ mixin _$FormClientErrorState on FormClientError, Store {
   }
 
   late final _$stateAtom =
-      Atom(name: 'FormClientError.state', context: context);
+      Atom(name: '_FormClientErrorState.state', context: context);
 
   @override
   String get state {

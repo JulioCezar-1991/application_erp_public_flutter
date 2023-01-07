@@ -9,8 +9,10 @@ import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ProductCreatePage extends StatefulWidget {
+  const ProductCreatePage({super.key});
+
   @override
-  _ProductCreatePageState createState() => _ProductCreatePageState();
+  State<ProductCreatePage> createState() => _ProductCreatePageState();
 }
 
 class _ProductCreatePageState extends State<ProductCreatePage> {
@@ -26,12 +28,12 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Cadastrar Novo Serviço",
         ),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.only(right: 4),
+            padding: const EdgeInsets.only(right: 4),
             child: IconButton(
               icon: const Icon(
                 Icons.check,
@@ -43,11 +45,11 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                     return AlertDialog(
                       title: const Text("Confirmar Cadastro do Produto"),
                       actions: <Widget>[
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Salvar",
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
                           ),
                           onPressed: () {
                             _productController.validateAll();
@@ -57,11 +59,11 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                             );
                           },
                         ),
-                        FlatButton(
+                        ElevatedButton(
                           child: Text(
                             "Cancelar",
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -77,7 +79,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
             Observer(
@@ -85,7 +87,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                 keyboardType: TextInputType.text,
                 maxLength: 38,
                 icon: const Icon(
-                  FontAwesomeIcons.cut,
+                  FontAwesomeIcons.accusoft,
                   size: 22,
                 ),
                 hintText: 'Digite o serviço',
@@ -121,8 +123,8 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
             Row(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(right: 16),
-                  child: Icon(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: const Icon(
                     Icons.timer,
                     color: Colors.grey,
                   ),
@@ -132,7 +134,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                     format: format,
                     initialValue: DateTime.now(),
                     decoration: InputDecoration(
-                      suffixIcon: Padding(
+                      suffixIcon: const Padding(
                         padding: EdgeInsets.only(left: 20),
                         child: Icon(Icons.clear),
                       ),
@@ -217,7 +219,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                   maxLines: 4,
                   keyboardType: TextInputType.text,
                   maxLength: 112,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.details,
                     size: 26,
                   ),

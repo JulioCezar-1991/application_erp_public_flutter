@@ -1,7 +1,7 @@
-import 'package:application_erp_public_flutter/app/shared/models/client_create_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_delete_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_create_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_delete_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 

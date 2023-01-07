@@ -14,14 +14,7 @@ ThemeData appTheme() {
     primaryColor: primaryColor,
     backgroundColor: backgroundColor,
     bottomAppBarColor: bottomAppBarColor,
-    cursorColor: accentColor,
     appBarTheme: const AppBarTheme(
-      textTheme: TextTheme(
-        bodyText1: TextStyle(
-          fontSize: 20,
-          color: textStyleColor,
-        ),
-      ),
       color: Color.fromRGBO(56, 32, 52, 1.0),
       actionsIconTheme: IconThemeData(color: Colors.white),
       iconTheme: IconThemeData(color: Colors.white),

@@ -1,27 +1,28 @@
-class OrderOpenListModel {
-  dynamic status;
-  dynamic sId;
-  dynamic number;
-  dynamic customer;
-  dynamic client;
-  dynamic schedulingdate;
-
+class OrderAllListModel {
+  String? status;
+  String? sId;
+  String? number;
+  Customer? customer;
+  Customer? client;
+  String? schedulingdate;
+  String? schedulinghour;
   dynamic itens;
-  dynamic subtotal;
-  dynamic createDate;
+  double? subtotal;
+  String? createDate;
 
-  OrderOpenListModel(
+  OrderAllListModel(
       {this.status,
       this.sId,
       this.number,
       this.customer,
       this.client,
       this.schedulingdate,
+      this.schedulinghour,
       this.itens,
       this.subtotal,
       this.createDate});
 
-  OrderOpenListModel.fromJson(Map<String, dynamic> json) {
+  OrderAllListModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     sId = json['_id'];
     number = json['number'];
@@ -29,6 +30,7 @@ class OrderOpenListModel {
         json['customer'] != null ? Customer.fromJson(json['customer']) : null;
     client = json['client'] != null ? Customer.fromJson(json['client']) : null;
     schedulingdate = json['schedulingdate'];
+    schedulinghour = json['schedulinghour'];
     if (json['itens'] != null) {
       itens = List<Itens>;
       json['itens'].forEach((v) {
@@ -45,12 +47,13 @@ class OrderOpenListModel {
     data['_id'] = sId;
     data['number'] = number;
     if (customer != null) {
-      data['customer'] = customer.toJson();
+      data['customer'] = customer;
     }
     if (client != null) {
-      data['client'] = client.toJson();
+      data['client'] = client;
     }
     data['schedulingdate'] = schedulingdate;
+    data['schedulinghour'] = schedulinghour;
     if (itens != null) {
       data['itens'] = itens.map((v) => v.toJson()).toList();
     }
@@ -61,13 +64,13 @@ class OrderOpenListModel {
 }
 
 class Customer {
-  dynamic sId;
-  dynamic name;
-  dynamic telcel;
-  dynamic telfix;
-  dynamic email;
+  String? sId;
+  String? name;
+  String? telcel;
+  String? telfix;
+  String? email;
 
-  Customer({this.sId, this.name, this.telcel, this.telfix, this.email});
+  Customer({sId, name, telcel, telfix, email});
 
   Customer.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -91,7 +94,7 @@ class Customer {
 class Itens {
   dynamic product;
 
-  Itens({product});
+  Itens({this.product});
 
   Itens.fromJson(Map<String, dynamic> json) {
     product =
@@ -108,10 +111,10 @@ class Itens {
 }
 
 class Product {
-  dynamic sId;
-  dynamic title;
-  dynamic price;
-  dynamic averagetime;
+  String? sId;
+  String? title;
+  double? price;
+  String? averagetime;
 
   Product({this.sId, this.title, this.price, this.averagetime});
 

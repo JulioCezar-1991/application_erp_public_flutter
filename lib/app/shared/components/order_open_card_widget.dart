@@ -1,5 +1,5 @@
 import 'package:application_erp_public_flutter/app/modules/order/order_open_details_page.dart';
-import 'package:application_erp_public_flutter/app/shared/models/order_open_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_open_list_model.dart';
 import 'package:flutter/material.dart';
 
 class OrderOpenCard extends StatelessWidget {
@@ -35,25 +35,25 @@ class OrderOpenCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 5, bottom: 0),
                     child: Text(
-                      item.client.name != null
+                      item.client.name.isNotEmpty
                           ? (item.client.name.length >= 32
-                              ? item.client.name.substring(0, 29) + '...'
+                              ? '${item.client.name.substring(0, 29)}...'
                               : item.client.name)
                           : 'Consumidor Final',
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).primaryColor),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 4, bottom: 2),
                     child: Text(
-                      "Agendamento: ${item.schedulingdate.substring(8, 10)}/${item.schedulingdate.substring(5, 7)}/${item.schedulingdate.substring(0, 4)} - ${item.schedulingdate.substring(11, 13)}:${item.schedulingdate.substring(14, 16)}",
+                      "Agendamento: ${item.schedulingdate}/${item.schedulingdate}/${item.schedulingdate} - ${item.schedulingdate}:${item.schedulingdate}",
                       style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).primaryColor),
                     ),
                   ),
                   Row(
@@ -63,10 +63,10 @@ class OrderOpenCard extends StatelessWidget {
                         child: Row(
                           children: <Widget>[
                             Text(
-                              "Registro: ${item.createDate.substring(8, 10)}/${item.createDate.substring(5, 7)}/${item.createDate.substring(0, 4)}-${item.createDate.substring(11, 13)}:${item.createDate.substring(14, 16)}",
+                              "Registro: ${item.createDate}/${item.createDate}/${item.createDate}-${item.createDate}:${item.createDate}",
                               style: TextStyle(
                                   fontSize: 12,
-                                  color: Theme.of(context).accentColor),
+                                  color: Theme.of(context).primaryColor),
                             ),
                             const SizedBox(
                               width: 20,

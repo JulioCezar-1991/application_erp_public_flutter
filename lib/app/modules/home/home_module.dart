@@ -1,14 +1,14 @@
 import 'package:application_erp_public_flutter/app/modules/client/client_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/client/client_module.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_repository.dart';
 import 'package:application_erp_public_flutter/app/modules/customer/customer_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/home/home_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/home/home_page.dart';
 import 'package:application_erp_public_flutter/app/modules/order/order_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/product/product_controller.dart';
 import 'package:application_erp_public_flutter/app/modules/product/product_module.dart';
-import 'package:application_erp_public_flutter/app/shared/repositories/client_repository.dart';
 import 'package:application_erp_public_flutter/app/shared/repositories/customer_repository.dart';
-import 'package:application_erp_public_flutter/app/shared/repositories/order_repository.dart';
+import 'package:application_erp_public_flutter/app/modules/order/order_repository.dart';
 import 'package:application_erp_public_flutter/app/shared/repositories/product_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';

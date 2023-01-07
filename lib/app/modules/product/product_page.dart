@@ -9,11 +9,11 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _productController = Modular.get<ProductController>();
+    final productController = Modular.get<ProductController>();
     return Scaffold(
       body: Observer(
         builder: (_) {
-          if (_productController.products.error != null) {
+          if (productController.products.error != null) {
             return Center(
               child: IconButton(
                 icon: const Icon(
@@ -21,15 +21,15 @@ class ProductPage extends StatelessWidget {
                   size: 40,
                 ),
                 onPressed: () {
-                  _productController.fetchProduct();
+                  productController.fetchProduct();
                 },
               ),
             );
           }
-          if (_productController.products.value == null) {
+          if (productController.products.value == null) {
             return const Center(child: CircularProgressIndicator());
           }
-          var list = _productController.products.value;
+          var list = productController.products.value;
           return ListView.builder(
             itemCount: list?.length,
             itemBuilder: (context, index) {

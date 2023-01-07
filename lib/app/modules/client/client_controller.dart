@@ -1,10 +1,8 @@
-// ignore_for_file: import_of_legacy_library_into_null_safe
-
-import 'package:application_erp_public_flutter/app/shared/models/client_create_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_delete_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_list_model.dart';
-import 'package:application_erp_public_flutter/app/shared/models/client_model.dart';
-import 'package:application_erp_public_flutter/app/shared/repositories/client_repository.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_create_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_delete_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_list_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_model.dart';
+import 'package:application_erp_public_flutter/app/modules/client/client_repository.dart';
 import 'package:mobx/mobx.dart';
 
 import 'package:validators/validators.dart';
@@ -109,7 +107,18 @@ abstract class ClientControllerBase with Store {
   }
 
   @observable
-  var dataClientModel = ClientCreateModel();
+  var dataClientModel = ClientCreateModel(
+      address: '',
+      city: '',
+      cpf: '',
+      date: '',
+      email: '',
+      id: '',
+      name: '',
+      sector: '',
+      state: '',
+      telcel: '',
+      telfix: '');
 
   Future<ClientModel> _postCreate() async {
     var model = ClientCreateModel(
@@ -122,16 +131,12 @@ abstract class ClientControllerBase with Store {
         address: address,
         sector: sector,
         city: city,
-        state: state);
-    try {
-      var res = await repository.postClient(model);
-      return res;
-    } catch (ex) {
-      // ignore: avoid_print
-      print(ex);
-      dataClientModel = model;
-    }
-    return model.id;
+        state: state,
+        id: '');
+
+    var res = await repository.postClient(model);
+
+    return res;
   }
 
   void validateCreateAll() async {
@@ -144,15 +149,15 @@ abstract class ClientControllerBase with Store {
     validateSector(sector);
     validateCity(city);
     validateState(state);
-    if (error.name == null &&
-        error.cpf == null &&
-        error.email == null &&
-        error.telcel == null &&
-        error.telfix == null &&
-        error.address == null &&
-        error.sector == null &&
-        error.city == null &&
-        error.state == null) {
+    if (error.name.isNotEmpty &&
+        error.cpf.isNotEmpty &&
+        error.email.isNotEmpty &&
+        error.telcel.isNotEmpty &&
+        error.telfix.isNotEmpty &&
+        error.address.isNotEmpty &&
+        error.sector.isNotEmpty &&
+        error.city.isNotEmpty &&
+        error.state.isNotEmpty) {
       _postCreate().then((client) async {});
     }
   }
@@ -167,9 +172,9 @@ abstract class ClientControllerBase with Store {
       var res = await repository.deleteClient(model);
       return res;
     } catch (error) {
-      dataClientModel = model.id;
+      print.call(error);
     }
-    return model.id;
+    return id;
   }
 
   void patchClient(String id) async {
@@ -193,15 +198,15 @@ abstract class ClientControllerBase with Store {
       var res = await repository.patchClient(model);
       return res;
     } catch (error) {
-      dataClientModel = model;
+      print.call(error);
     }
-    return model.id;
+    return id;
   }
 }
 
-class FormClientErrorState = FormClientError with _$FormClientErrorState;
+class FormClientErrorState = _FormClientErrorState with _$FormClientErrorState;
 
-abstract class FormClientError with Store {
+abstract class _FormClientErrorState with Store {
   @observable
   late String name;
 
@@ -231,13 +236,13 @@ abstract class FormClientError with Store {
 
   @computed
   bool get hasErrors =>
-      name != null ||
-      cpf != null ||
-      telcel != null ||
-      telfix != null ||
-      email != null ||
-      address != null ||
-      sector != null ||
-      city != null ||
-      state != null;
+      name.isNotEmpty ||
+      cpf.isNotEmpty ||
+      telcel.isNotEmpty ||
+      telfix.isNotEmpty ||
+      email.isNotEmpty ||
+      address.isNotEmpty ||
+      sector.isNotEmpty ||
+      city.isNotEmpty ||
+      state.isNotEmpty;
 }

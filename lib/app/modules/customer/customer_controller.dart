@@ -112,11 +112,11 @@ abstract class CustomerControllerBase with Store {
     validateTelFix(telfix);
     validateEmail(email);
     validatePassword(password);
-    if (error.name == null &&
-        error.email == null &&
-        error.telcel == null &&
-        error.telfix == null &&
-        error.password == null) {
+    if (error.name.isNotEmpty &&
+        error.email.isNotEmpty &&
+        error.telcel.isNotEmpty &&
+        error.telfix.isNotEmpty &&
+        error.password.isNotEmpty) {
       _postCreate().then((client) async {});
     }
   }
@@ -146,10 +146,10 @@ abstract class FormcustomerErrorState with Store {
 
   @computed
   bool get hasErrors =>
-      name != null ||
-      telcel != null ||
-      telfix != null ||
-      email != null ||
-      password != null ||
-      roles != null;
+      name.isEmpty ||
+      telcel.isEmpty ||
+      telfix.isEmpty ||
+      email.isEmpty ||
+      password.isEmpty ||
+      roles.isEmpty;
 }

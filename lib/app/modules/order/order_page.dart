@@ -59,39 +59,38 @@ class _OrderPageState extends State<OrderPage>
       body: TabBarView(
         children: <Widget>[
           //Order Abertas
-          Center(
-            child: Observer(
-              builder: (_) {
-                if (orderController.ordersOpen.error != null) {
-                  return Center(
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.replay,
-                        size: 40,
-                      ),
-                      onPressed: () {
-                        orderController.fetchOrderOpen();
-                      },
+          Observer(
+            builder: (_) {
+              if (orderController.ordersOpen.error != null) {
+                return Center(
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.replay,
+                      size: 40,
+                    ),
+                    onPressed: () {
+                      orderController.fetchOrderOpen();
+                    },
+                  ),
+                );
+              }
+              if (orderController.ordersOpen.value == null) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              var list = orderController.ordersOpen.value;
+              return ListView.builder(
+                itemCount: list?.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: OrderOpenCard(
+                      item: list![index],
                     ),
                   );
-                }
-                if (orderController.ordersOpen.value == null) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                var list = orderController.ordersOpen.value;
-                return ListView.builder(
-                  itemCount: list?.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: OrderOpenCard(
-                        item: list![index],
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+                },
+              );
+            },
           ),
+
           //Order Fechadas
           Center(
             child: Observer(
@@ -99,7 +98,7 @@ class _OrderPageState extends State<OrderPage>
                 if (orderController.ordersDone.error != null) {
                   return Center(
                     child: IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.replay,
                         size: 40,
                       ),
@@ -110,7 +109,7 @@ class _OrderPageState extends State<OrderPage>
                   );
                 }
                 if (orderController.ordersDone.value == null) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
                 var list = orderController.ordersDone.value;
                 return ListView.builder(
